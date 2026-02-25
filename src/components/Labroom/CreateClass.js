@@ -25,7 +25,7 @@ function CreateClass() {
 
   const createClass = async () => {
     if (className === undefined || className === '') {
-      toast.error(`ল্যাব রুমের নাম প্রদান করুন`);
+      toast.error('请输入实验室名称');
       return;
     }
 
@@ -61,11 +61,11 @@ function CreateClass() {
 
       setClassName('');
       handleClose();
-      toast.success('ল্যাবরুম সফলভাবে তৈরি হয়েছে!');
+      toast.success('实验室创建成功！');
     } catch (err) {
       setClassName('');
       handleClose();
-      toast.error(`ল্যাবরুম তৈরি করা যাচ্ছে না - ${err.message}`);
+      toast.error(`创建失败 - ${err.message}`);
     }
   };
 
@@ -76,15 +76,15 @@ function CreateClass() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">ল্যাবরুম তৈরি করুন</DialogTitle>
+        <DialogTitle id="form-dialog-title">创建实验室</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            ল্যাবরুমের নাম লিখুন এবং আমরা আপনার জন্য একটি ল্যাবরুম তৈরি করব!
+            输入实验室名称，我们将为你创建专属实验室！
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            label="ল্যাবরুমের নাম"
+            label="实验室名称"
             type="text"
             fullWidth
             value={className}
@@ -93,10 +93,10 @@ function CreateClass() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            বাতিল করুন
+            取消
           </Button>
           <Button onClick={createClass} color="primary">
-            তৈরি করুন
+            创建
           </Button>
         </DialogActions>
       </Dialog>

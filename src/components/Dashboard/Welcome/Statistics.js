@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../configs/firebase';
 
 const Statistics = () => {
-  const toBn = (n) => n?.replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d]);
+  const toBn = (n) => n;
   const [user, setUser] = useState(0);
   const [lab, setLab] = useState(0);
   const [post, setPost] = useState(0);
@@ -87,7 +87,7 @@ const Statistics = () => {
       ) : (
         <section className="p-4 my-6 md:p-8 bg-indigo-50 text-gray-800">
           <h2 className="font-display pb-2 tracking-wider text-2xl sm:text-3xl mb-6 text-brand-800 text-center font-semibold">
-            বাংলাদেশের সর্ব প্রথম ভার্চুয়াল সাইন্স ল্যাবে স্বাগতম!
+            欢迎来到中国领先的 AI 虚拟科学实验室！
           </h2>
           <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-2 xl:grid-cols-3 font-body">
             <div className="flex overflow-hidden rounded-lg bg-indigo-100 text-gray-800">
@@ -104,8 +104,8 @@ const Statistics = () => {
                 </svg>
               </div>
               <div className="flex items-center justify-around flex-1 p-3">
-                <p className="text-2xl font-semibold font-display">৩+</p>
-                <p className="font-body font-medium text-xl">সিমুলেশন</p>
+                <p className="text-2xl font-semibold font-display">3+</p>
+                <p className="font-body font-medium text-xl">仿真实验</p>
               </div>
             </div>
 
@@ -125,7 +125,7 @@ const Statistics = () => {
                 <p className="text-2xl font-semibold font-display">
                   {toBn(user?.toString())}+
                 </p>
-                <p className="font-body font-medium text-xl">শিক্ষার্থী</p>
+                <p className="font-body font-medium text-xl">学生</p>
               </div>
             </div>
 
@@ -145,7 +145,7 @@ const Statistics = () => {
                 <p className="text-2xl font-semibold font-display">
                   {toBn(lab?.toString())}+
                 </p>
-                <p className="font-body font-medium text-xl">ল্যাবরুম</p>
+                <p className="font-body font-medium text-xl">实验室</p>
               </div>
             </div>
 
@@ -162,8 +162,8 @@ const Statistics = () => {
                 </svg>
               </div>
               <div className="flex items-center justify-around flex-1 p-3">
-                <p className="text-2xl font-semibold font-display">২৪ ঘন্টা</p>
-                <p className="font-body font-medium text-xl">অনলাইন</p>
+                <p className="text-2xl font-semibold font-display">24 小时</p>
+                <p className="font-body font-medium text-xl">在线</p>
               </div>
             </div>
 
@@ -183,7 +183,7 @@ const Statistics = () => {
                 <p className="text-2xl font-semibold font-display">
                   {toBn(post?.toString())}+
                 </p>
-                <p className="font-body font-medium text-xl">পোস্ট</p>
+                <p className="font-body font-medium text-xl">帖子</p>
               </div>
             </div>
 
@@ -203,7 +203,7 @@ const Statistics = () => {
                 <p className="text-2xl font-semibold font-display">
                   {toBn(workshop?.toString())}+
                 </p>
-                <p className="font-body font-medium text-xl">ওয়ার্কশপ </p>
+                <p className="font-body font-medium text-xl">工作坊</p>
               </div>
             </div>
           </div>

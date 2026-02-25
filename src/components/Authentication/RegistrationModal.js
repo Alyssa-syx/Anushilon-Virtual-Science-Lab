@@ -27,7 +27,7 @@ const RegistrationModal = (props) => {
     email: '',
     password1: '',
     password2: '',
-    textChange: 'নিবন্ধন করুন',
+    textChange: '注册',
   });
 
   const [formUserData, setFormUserData] = useState({
@@ -37,7 +37,7 @@ const RegistrationModal = (props) => {
     uMobile: '',
     uPassword1: '',
     uPassword2: '',
-    uTextChange: 'নিবন্ধন করুন',
+    uTextChange: '注册',
   });
   const [role, setRole] = useState('student');
 
@@ -83,7 +83,7 @@ const RegistrationModal = (props) => {
 
   const handleStrongPassword = () => {
     toast(
-      'পাসওয়ার্ডটি কমপক্ষে ৮ টি অক্ষরের দীর্ঘ হতে হবে এবং কমপক্ষে একটি ছোট হাতের অক্ষর, একটি বড় হাতের অক্ষর, একটি নম্বর এবং একটি চিহ্ন থাকতে হবে!',
+      '密码至少 8 位，需包含大小写字母、数字和特殊字符！',
       {
         icon: '🙏',
       }
@@ -95,8 +95,8 @@ const RegistrationModal = (props) => {
     e.preventDefault();
     if (name && email && password1) {
       if (password1 === password2) {
-        const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-        setFormData({ ...formData, textChange: 'নিবন্ধন হচ্ছে' });
+        const loading = toast.loading('请稍候...⏳');
+        setFormData({ ...formData, textChange: '注册中' });
 
         try {
           const querySnapshot = await db
@@ -136,7 +136,7 @@ const RegistrationModal = (props) => {
               email: '',
               password1: '',
               password2: '',
-              textChange: 'নিবন্ধন হয়েছে',
+              textChange: '注册成功',
             });
             toast.dismiss(loading);
             toast.success(res.data.message);
@@ -149,16 +149,16 @@ const RegistrationModal = (props) => {
               email: email,
               password1: password1,
               password2: password2,
-              textChange: 'নিবন্ধন করুন',
+              textChange: '注册',
             });
             toast.dismiss(loading);
             toast.error(err?.response?.data?.errors);
           });
       } else {
-        toast.error('পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨');
+        toast.error('两次密码不一致！🤨');
       }
     } else {
-      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
+      toast.error('请填写所有必填项！😒');
     }
   };
 
@@ -168,8 +168,8 @@ const RegistrationModal = (props) => {
 
     if (uInstitution && uName && uEmail && uMobile && uPassword1) {
       if (uPassword1 === uPassword2) {
-        const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-        setFormUserData({ ...formUserData, uTextChange: 'নিবন্ধন হচ্ছে' });
+        const loading = toast.loading('请稍候...⏳');
+        setFormUserData({ ...formUserData, uTextChange: '注册中' });
 
         try {
           const querySnapshot = await db
@@ -212,7 +212,7 @@ const RegistrationModal = (props) => {
               uMobile: '',
               uPassword1: '',
               uPassword2: '',
-              uTextChange: 'নিবন্ধন হয়েছে',
+              uTextChange: '注册成功',
             });
             toast.dismiss(loading);
             toast.success(res.data.message);
@@ -226,16 +226,16 @@ const RegistrationModal = (props) => {
               uMobile: uMobile,
               uPassword1: uPassword1,
               uPassword2: uPassword2,
-              uTextChange: 'নিবন্ধন করুন',
+              uTextChange: '注册',
             });
             toast.dismiss(loading);
             toast.error(err?.response?.data?.errors);
           });
       } else {
-        toast.error('পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨');
+        toast.error('两次密码不一致！🤨');
       }
     } else {
-      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
+      toast.error('请填写所有必填项！😒');
     }
   };
 
@@ -294,16 +294,16 @@ const RegistrationModal = (props) => {
                       <div>
                         {/* Registration Header*/}
                         <h2 className="text-2xl ml-4 mb-2 font-display text-center font-bold text-brand-900">
-                          অনুশীলন
+                          AI虚拟科学实验室
                         </h2>
                         <p className="text-lg font-body text-center text-gray-600 ">
-                          নতুন ব্যবহারকারী হিসাবে নিবন্ধন করুন
+                          新用户注册
                         </p>
                       </div>
                       <div className="mt-3 mb-0 font-body flex flex-wrap justify-center items-center">
                         <label className="inline-flex items-center">
                           <span className="text-base text-gray-700 font-body mr-3 font-medium">
-                            আমি একজন
+                            我是
                           </span>
                         </label>
                         <label className="inline-flex items-center cursor-pointer">
@@ -316,7 +316,7 @@ const RegistrationModal = (props) => {
                             onClick={() => setRole('student')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
-                            শিক্ষার্থী
+                            学生
                           </span>
                         </label>
                         <label className="inline-flex items-center ml-3 cursor-pointer">
@@ -328,7 +328,7 @@ const RegistrationModal = (props) => {
                             onClick={() => setRole('teacher')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
-                            শিক্ষক
+                            教师
                           </span>
                         </label>
                       </div>
@@ -338,7 +338,7 @@ const RegistrationModal = (props) => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInInstitutionName"
                         >
-                          শিক্ষা প্রতিষ্ঠানের নাম
+                          学校/机构名称
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -352,7 +352,7 @@ const RegistrationModal = (props) => {
                             name="institutionName"
                             type="text"
                             className="login-input"
-                            placeholder="আপনার শিক্ষা প্রতিষ্ঠানের নাম প্রদান করুন"
+                            placeholder="输入学校/机构名称"
                             defaultValue={uInstitution}
                             disabled
                           />
@@ -364,7 +364,7 @@ const RegistrationModal = (props) => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInUserName"
                         >
-                          নাম
+                          姓名
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -378,7 +378,7 @@ const RegistrationModal = (props) => {
                             name="name"
                             type="text"
                             className="login-input"
-                            placeholder="আপনার নাম প্রদান করুন"
+                            placeholder="请输入姓名"
                             onChange={handleUserChange('uName')}
                             value={uName}
                           />
@@ -390,7 +390,7 @@ const RegistrationModal = (props) => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInEmailAddress"
                         >
-                          ইমেইল
+                          邮箱
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -404,7 +404,7 @@ const RegistrationModal = (props) => {
                             name="email"
                             type="email"
                             className="login-input"
-                            placeholder="আপনার ইমেইল প্রদান করুন"
+                            placeholder="请输入邮箱"
                             onChange={handleUserChange('uEmail')}
                             value={uEmail}
                           />
@@ -417,7 +417,7 @@ const RegistrationModal = (props) => {
                             className="block mb-2 text-base font-medium text-gray-700"
                             htmlFor="SignInMobilePhone"
                           >
-                            যোগাযোগের নম্বর
+                            联系电话
                           </label>
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -432,7 +432,7 @@ const RegistrationModal = (props) => {
                             name="mobile"
                             type="text"
                             className="login-input"
-                            placeholder="আপনার কন্টাক্ট নম্বর প্রদান করুন"
+                            placeholder="请输入联系电话"
                             onChange={handleUserChange('uMobile')}
                             value={uMobile}
                           />
@@ -445,13 +445,13 @@ const RegistrationModal = (props) => {
                             className="block mb-2 text-base font-medium text-gray-700"
                             htmlFor="SignInPassword"
                           >
-                            পাসওয়ার্ড
+                            密码
                           </label>
                           <span
                             className="text-sm text-gray-700 cursor-pointer hover:text-deep-purple-accent-700 tracking-wide"
                             onClick={handleStrongPassword}
                           >
-                            শক্তিশালী পাসওয়ার্ড ব্যবহার করুন
+                            使用强密码
                           </span>
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -466,7 +466,7 @@ const RegistrationModal = (props) => {
                             name="password"
                             type={typePass ? 'text' : 'password'}
                             className="login-input"
-                            placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
+                            placeholder="请输入密码"
                             onChange={handleUserChange('uPassword1')}
                             value={uPassword1}
                           />
@@ -486,7 +486,7 @@ const RegistrationModal = (props) => {
                             className="block mb-2 text-base font-medium text-gray-700"
                             htmlFor="SignInPasswordAgain"
                           >
-                            পাসওয়ার্ড যাচাই
+                            确认密码
                           </label>
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -501,7 +501,7 @@ const RegistrationModal = (props) => {
                             name="password"
                             type={typePass ? 'text' : 'password'}
                             className="login-input"
-                            placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
+                            placeholder="请再次输入密码"
                             onChange={handleUserChange('uPassword2')}
                             value={uPassword2}
                           />
@@ -534,7 +534,7 @@ const RegistrationModal = (props) => {
                         className="text-base text-brand-900 font-semibold font-body uppercase cursor-pointer hover:text-deep-purple-accent-700"
                         onClick={handleOpenLoginModal}
                       >
-                        অথবা লগ ইন
+                        或验证身份
                       </span>
                       <span className="w-1/5 border-b md:w-1/4" />
                     </div>
@@ -548,16 +548,16 @@ const RegistrationModal = (props) => {
                       <div>
                         {/* Registration Header*/}
                         <h2 className="text-2xl ml-4 mb-2 font-display text-center font-bold text-brand-900">
-                          অনুশীলন
+                          AI虚拟科学实验室
                         </h2>
                         <p className="text-lg font-body text-center text-gray-600 ">
-                          নতুন ব্যবহারকারী হিসাবে নিবন্ধন করুন
+                          新用户注册
                         </p>
                       </div>
                       <div className="mt-3 mb-0 font-body flex flex-wrap justify-center items-center">
                         <label className="inline-flex items-center">
                           <span className="text-base text-gray-700 font-body mr-3 font-medium">
-                            আমি একজন
+                            我是
                           </span>
                         </label>
                         <label className="inline-flex items-center cursor-pointer">
@@ -570,7 +570,7 @@ const RegistrationModal = (props) => {
                             onClick={() => setRole('student')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
-                            শিক্ষার্থী
+                            学生
                           </span>
                         </label>
                         <label className="inline-flex items-center ml-3 cursor-pointer">
@@ -582,7 +582,7 @@ const RegistrationModal = (props) => {
                             onClick={() => setRole('teacher')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
-                            শিক্ষক
+                            教师
                           </span>
                         </label>
                       </div>
@@ -592,7 +592,7 @@ const RegistrationModal = (props) => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInUserName"
                         >
-                          নাম
+                          姓名
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -606,7 +606,7 @@ const RegistrationModal = (props) => {
                             name="name"
                             type="text"
                             className="login-input"
-                            placeholder="আপনার নাম প্রদান করুন"
+                            placeholder="请输入姓名"
                             onChange={handleChange('name')}
                             value={name}
                           />
@@ -618,7 +618,7 @@ const RegistrationModal = (props) => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInEmailAddress"
                         >
-                          ইমেইল
+                          邮箱
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -632,7 +632,7 @@ const RegistrationModal = (props) => {
                             name="email"
                             type="email"
                             className="login-input"
-                            placeholder="আপনার ইমেইল প্রদান করুন"
+                            placeholder="请输入邮箱"
                             onChange={handleChange('email')}
                             value={email}
                           />
@@ -645,13 +645,13 @@ const RegistrationModal = (props) => {
                             className="block mb-2 text-base font-medium text-gray-700"
                             htmlFor="loggingPassword"
                           >
-                            পাসওয়ার্ড
+                            密码
                           </label>
                           <span
                             className="text-sm text-gray-700 cursor-pointer hover:text-deep-purple-accent-700 tracking-wide"
                             onClick={handleStrongPassword}
                           >
-                            শক্তিশালী পাসওয়ার্ড ব্যবহার করুন
+                            使用强密码
                           </span>
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -666,7 +666,7 @@ const RegistrationModal = (props) => {
                             name="password"
                             type={typePass ? 'text' : 'password'}
                             className="login-input"
-                            placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
+                            placeholder="请输入密码"
                             onChange={handleChange('password1')}
                             value={password1}
                           />
@@ -686,7 +686,7 @@ const RegistrationModal = (props) => {
                             className="block mb-2 text-base font-medium text-gray-700"
                             htmlFor="SignInPasswordAgain"
                           >
-                            পাসওয়ার্ড যাচাই
+                            确认密码
                           </label>
                         </div>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -701,7 +701,7 @@ const RegistrationModal = (props) => {
                             name="password"
                             type={typePass ? 'text' : 'password'}
                             className="login-input"
-                            placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
+                            placeholder="请再次输入密码"
                             onChange={handleChange('password2')}
                             value={password2}
                           />
@@ -734,7 +734,7 @@ const RegistrationModal = (props) => {
                         className="text-base text-brand-900 font-semibold font-body uppercase cursor-pointer hover:text-deep-purple-accent-700"
                         onClick={handleOpenLoginModal}
                       >
-                        অথবা লগ ইন
+                        或验证身份
                       </span>
                       <span className="w-1/5 border-b md:w-1/4" />
                     </div>

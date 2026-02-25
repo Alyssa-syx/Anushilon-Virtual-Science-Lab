@@ -14,7 +14,7 @@ import Testimonial from '../components/HomePage/Testimonial/Testimonial';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const Home = () => {
-  document.title = 'অনুশীলন - ভার্চুয়াল সাইন্স ল্যাব';
+  document.title = 'AI虚拟科学实验室';
   const modalData = useContext(ModalContext);
   // get device width from custom hooks
   const { width } = useWindowDimensions();
@@ -30,7 +30,7 @@ const Home = () => {
           duration: 7000,
           style: {
             minWidth: `${notificationWidth}`,
-            fontFamily: 'Hind Siliguri',
+            fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
             zIndex: 999,
           },
         }}

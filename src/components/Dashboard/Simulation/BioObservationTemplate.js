@@ -14,13 +14,13 @@ for (let i = 1; i <= 5; i++) {
       className="bg-indigo-50 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-6 sm:mb-0 text-base"
       key={i}
     >
-      <th className="observation-table-header">পর্যবেক্ষণ সংখ্যা</th>
-      <th className="observation-table-header">আলোক শক্তি (ওয়াট)</th>
-      <th className="observation-table-header">দূরত্ব (সেমি)</th>
-      <th className="observation-table-header">রঙ</th>
-      <th className="observation-table-header">মিনিট</th>
-      <th className="observation-table-header">সেকেন্ড</th>
-      <th className="observation-table-header">বুদবুদের সংখ্যা</th>
+      <th className="observation-table-header">序号</th>
+      <th className="observation-table-header">光照强度 (W)</th>
+      <th className="observation-table-header">距离 (cm)</th>
+      <th className="observation-table-header">光色</th>
+      <th className="observation-table-header">分钟</th>
+      <th className="observation-table-header">秒</th>
+      <th className="observation-table-header">气泡数</th>
     </tr>
   );
 }
@@ -35,8 +35,7 @@ const BioObservationTemplate = () => {
     content: () => componentRef.current,
   });
 
-  document.title = ` সালোকসংশ্লেষণ প্রক্রিয়ায় ক্লোরোফিল ও আলোর অপরিহার্যতার
-  পরীক্ষণ। - ${auth.user.name}`;
+  document.title = `光合作用中叶绿素与光的必要性实验 - ${auth.user.name}`;
 
   return (
     <React.Fragment>
@@ -46,9 +45,9 @@ const BioObservationTemplate = () => {
           className="flex flex-wrap text-lg font-body text-gray-900 leading-relaxed tracking-wide px-4 py-5"
         >
           <div className="mb-2 w-full">
-            <h2 className="font-semibold"> পর্যবেক্ষণ: </h2>
+            <h2 className="font-semibold"> 观察记录：</h2>
             <p>
-              সালোকসংশ্লেষণ প্রক্রিয়ায় ক্লোরোফিল ও আলোর অপরিহার্যতার পরীক্ষণ।
+              光合作用中叶绿素与光的必要性实验。
             </p>
           </div>
 
@@ -79,9 +78,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput11}
                             defaultValue={data.input11}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -95,9 +94,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput22}
                             defaultValue={data.input22}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -111,9 +110,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput33}
                             defaultValue={data.input33}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -127,9 +126,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput44}
                             defaultValue={data.input44}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -143,9 +142,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput55}
                             defaultValue={data.input55}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -160,9 +159,9 @@ const BioObservationTemplate = () => {
                             placeholder={data.placeInput66}
                             defaultValue={data.input66}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -178,9 +177,9 @@ const BioObservationTemplate = () => {
           {/* Observation Result 1*/}
           <div className="w-full font-body">
             {' '}
-            <p className="pt-4 pb-1 px-5 font-semibold">গণনা : </p>
+            <p className="pt-4 pb-1 px-5 font-semibold">计算：</p>
             <p className="py-1 px-5">
-              মোট সময়:
+              总时间：
               <input
                 name="LC-resistance"
                 type="number"
@@ -191,7 +190,7 @@ const BioObservationTemplate = () => {
               />
             </p>
             <p className="py-1 px-5">
-              মোট বুদবুদের সংখ্যা:
+              气泡总数：
               <input
                 name="Z-resistance"
                 type="number"
@@ -211,7 +210,7 @@ const BioObservationTemplate = () => {
             type="submit"
             onClick={() => setShowModal(true)}
           >
-            <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" /> জমা দিন
+            <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" /> 提交
           </button>
         </div>
       </form>
@@ -246,7 +245,7 @@ const BioObservationTemplate = () => {
                         </svg>
                       </div>
                       <p className="font-body text-brand-900 dark:text-gray-100 text-lg py-5 px-12">
-                        আপনার পরীক্ষণের সকল তথ্য সংরক্ষণ করা হয়েছে।
+                        实验数据已保存。
                       </p>
                       <div className="flex items-center justify-center gap-4 w-1/2 mt-2 mb-5 mx-auto">
                         <button
@@ -254,7 +253,7 @@ const BioObservationTemplate = () => {
                           className="py-2 px-4 bg-dark-brand-900 hover:bg-brand-900 focus:ring-indigo-800 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-body font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                           onClick={handlePrint}
                         >
-                          ডাউনলোড করুন
+                          下载
                         </button>
                       </div>
                     </Fade>

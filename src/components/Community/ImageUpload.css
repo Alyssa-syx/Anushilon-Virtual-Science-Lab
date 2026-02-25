@@ -15,7 +15,7 @@
 .caption__upload {
   width: 100%;
   margin-bottom: 15px;
-  font-family: Hind Siliguri;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
   font-size: 14px;
 }
 
@@ -28,7 +28,7 @@
 .button__upload {
   width: 100%;
   background-color: #1e293b;
-  font-family: Hind Siliguri;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
   font-size: 16px;
   margin-bottom: 10px;
 }

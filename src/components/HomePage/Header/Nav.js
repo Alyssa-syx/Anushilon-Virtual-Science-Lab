@@ -47,7 +47,7 @@ const Nav = () => {
     localStorage.removeItem('user');
 
     setIsAuthenticated(new Date());
-    toast.success('সফল ভাবে সাইন আউট হয়েছে! আমাদের সাথে থাকার জন্য ধন্যবাদ ❤️');
+    toast.success('已安全退出！感谢你的使用 ❤️');
   };
 
   useEffect(() => {
@@ -111,11 +111,11 @@ const Nav = () => {
                   onClick={() => scroll.scrollToTop()}
                 >
                   <span
-                    className={`${
-                      scrolled ? 'nav-link-deep' : 'nav-link-light'
-                    } text-3xl font-display font-black tracking-wider cursor-pointer`}
+                    className={`text-2xl font-extrabold tracking-wider cursor-pointer ${
+                      scrolled ? 'text-brand-900' : 'text-white'
+                    }`}
                   >
-                    অনুশীলন
+                    AI 虚拟科学实验室
                   </span>
                   <span className="hidden">{isAuthenticated.toString()}</span>
                 </Link>
@@ -134,7 +134,7 @@ const Nav = () => {
                         scrolled ? 'nav-link-deep' : 'nav-link-light'
                       } nav-link-general`}
                     >
-                      আমাদের সিমুলেশন
+                      仿真实验
                     </Link>
                   </li>
                   <li>
@@ -150,7 +150,7 @@ const Nav = () => {
                         scrolled ? 'nav-link-deep' : 'nav-link-light'
                       } nav-link-general`}
                     >
-                      আমাদের বৈশিষ্ট্য
+                      实验室特色
                     </Link>
                   </li>
                   <li>
@@ -166,7 +166,7 @@ const Nav = () => {
                         scrolled ? 'nav-link-deep' : 'nav-link-light'
                       } nav-link-general`}
                     >
-                      লোকেরা যা বলছে
+                      用户评价
                     </Link>
                   </li>
                   <li>
@@ -182,7 +182,7 @@ const Nav = () => {
                         scrolled ? 'nav-link-deep' : 'nav-link-light'
                       } nav-link-general`}
                     >
-                      আমাদের সম্পর্কে
+                      关于我们
                     </Link>
                   </li>
                 </ul>
@@ -208,7 +208,7 @@ const Nav = () => {
                         history.push('/dashboard');
                       }}
                     >
-                      ড্যাশবোর্ড
+                      工作台
                     </Link>
                   </li>
                   <li>
@@ -229,7 +229,7 @@ const Nav = () => {
                         });
                       }}
                     >
-                      লগ আউট
+                      退出登录
                     </Link>
                   </li>
                 </ul>
@@ -249,7 +249,7 @@ const Nav = () => {
                       } nav-link-general`}
                       onClick={handleDesktopLogin}
                     >
-                      লগ ইন
+                      验证身份
                     </Link>
                   </li>
                   <li>
@@ -267,7 +267,7 @@ const Nav = () => {
                       duration={500}
                       onClick={handleDesktopSignIn}
                     >
-                      জয়েন করো
+                      开启实验
                     </Link>
                   </li>
                 </ul>
@@ -320,11 +320,7 @@ const Nav = () => {
                             duration={500}
                             className="inline-flex items-center"
                           >
-                            <img
-                              className="h-10"
-                              src="https://i.ibb.co/2Z1XFtY/text-logo.png"
-                              alt="Text Logo"
-                            />
+                            <span className="text-2xl font-extrabold text-brand-900 tracking-wider">AI 虚拟科学实验室</span>
                           </Link>
                         </div>
                         <div>
@@ -360,7 +356,7 @@ const Nav = () => {
                               activeClass={`${classes.active}`}
                               className="nav-link-mobile"
                             >
-                              আমাদের সিমুলেশন
+                              仿真实验
                             </Link>
                           </li>
                           <li>
@@ -374,7 +370,7 @@ const Nav = () => {
                               activeClass={`${classes.active} text-deep-purple-900 font-bold`}
                               className="nav-link-mobile"
                             >
-                              আমাদের বৈশিষ্ট্য
+                              实验室特色
                             </Link>
                           </li>
                           <li>
@@ -388,7 +384,7 @@ const Nav = () => {
                               activeClass={`${classes.active} text-deep-purple-900 font-bold`}
                               className="nav-link-mobile"
                             >
-                              লোকেরা যা বলছে
+                              用户评价
                             </Link>
                           </li>
                           <li>
@@ -402,7 +398,7 @@ const Nav = () => {
                               activeClass={`${classes.active}`}
                               className="nav-link-mobile"
                             >
-                              আমাদের সম্পর্কে
+                              关于我们
                             </Link>
                           </li>
                           {localStorage.getItem('jwtToken') ? (
@@ -421,7 +417,7 @@ const Nav = () => {
                                     history.push('/dashboard');
                                   }}
                                 >
-                                  ড্যাশবোর্ড
+                                  工作台
                                 </Link>
                               </li>
                               <li>
@@ -441,7 +437,7 @@ const Nav = () => {
                                     });
                                   }}
                                 >
-                                  লগ আউট
+                                  退出登录
                                 </Link>
                               </li>
                             </Fragment>
@@ -459,7 +455,7 @@ const Nav = () => {
                                   className="nav-link-mobile"
                                   onClick={handleMobileLogin}
                                 >
-                                  লগ ইন
+                                  验证身份
                                 </Link>
                               </li>
                               <li>
@@ -473,7 +469,7 @@ const Nav = () => {
                                   duration={500}
                                   onClick={handleMobileSignIn}
                                 >
-                                  জয়েন করো
+                                  开启实验
                                 </Link>
                               </li>
                             </Fragment>

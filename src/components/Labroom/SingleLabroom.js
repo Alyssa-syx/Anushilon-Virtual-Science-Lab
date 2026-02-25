@@ -1,7 +1,7 @@
 import { IconButton, LinearProgress } from '@material-ui/core';
 import { SendOutlined } from '@material-ui/icons';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { Fragment, useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
@@ -57,7 +57,7 @@ const SingleLabroom = () => {
     }
   }
 
-  document.title = 'অনুশীলন - লাবরুম 🚀';
+  document.title = 'AI虚拟科学实验室 - 实验室 🚀';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,7 +77,7 @@ const SingleLabroom = () => {
 
   const createPost = async () => {
     if (announcementContent === undefined || announcementContent === '') {
-      toast.error(`অনুগ্রহ করে এসাইনমেন্ট এর নাম লিখুন`);
+      toast.error('请输入作业名称');
       return;
     }
 
@@ -114,7 +114,7 @@ const SingleLabroom = () => {
                   authorId: auth.user._id,
                   imgUrl: url,
                   content: announcementContent,
-                  date: moment().locale('bn-bd').format('LLL'),
+                  date: moment().locale('zh-cn').format('LLL'),
                   image: auth.user.avatar,
                   name: auth.user.name,
                 });
@@ -131,11 +131,11 @@ const SingleLabroom = () => {
         );
       } catch (error) {
         toast.error(
-          `পোস্ট করার সময় একটি ত্রুটি ছিল, অনুগ্রহ করে আবার চেষ্টা করুন! ${error}`
+          `发布失败，请重试！${error}`
         );
       }
     } else {
-      toast.error('অনুগ্রহ করে একটি ফাইল নির্বাচন করুন');
+      toast.error('请选择文件');
     }
   };
 
@@ -159,7 +159,7 @@ const SingleLabroom = () => {
             duration: 7000,
             style: {
               minWidth: `${notificationWidth}`,
-              fontFamily: 'Hind Siliguri',
+              fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
               zIndex: 999,
             },
           }}
@@ -181,12 +181,12 @@ const SingleLabroom = () => {
                   {classData?.creatorName}
                 </div>
                 <div className="text-base mt-4 font-body font-medium tracking-wider">
-                  লাবরুম কোড : {id}
+                  实验室代码：{id}
                 </div>
               </div>
               <div className="class__announce_box">
                 <p className="text-base font-body mb-3 font-semibold tracking-wider text-brand-900">
-                  লাবরুমে আপনার অ্যাসাইনমেন্ট পোস্ট করুন
+                  在实验室发布作业
                 </p>
 
                 {showProgressBar && (
@@ -204,7 +204,7 @@ const SingleLabroom = () => {
                     type="text"
                     value={announcementContent}
                     onChange={(e) => setAnnouncementContent(e.target.value)}
-                    placeholder="এসাইনমেন্ট এর নাম লিখুন"
+                    placeholder="输入作业名称"
                   />
                   <IconButton onClick={createPost}>
                     <SendOutlined />
@@ -242,7 +242,7 @@ const SingleLabroom = () => {
                         htmlFor="image-cover"
                         className="relative cursor-pointer rounded-md font-body font-semibold tracking-wider text-brand-900 hover:text-blue-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
                       >
-                        <span>ফাইল আপলোড করুন </span>
+                        <span>上传文件 </span>
                         <input
                           onChange={fileUpload}
                           type="file"
@@ -252,11 +252,11 @@ const SingleLabroom = () => {
                         />
                       </label>
                       <p className="pl-1 font-semibold tracking-wider font-body">
-                        অথবা এখানে টেনে আনুন
+                        或拖拽到此处
                       </p>
                     </div>
                     <p className="text-xs text-gray-600 tracking-wider font-body">
-                      শুধুমাত্র পিডিএফ অথবা ডক ফাইল সমর্থন করবে
+                      仅支持 PDF 或 DOC 文件
                     </p>
                   </div>
                 </label>

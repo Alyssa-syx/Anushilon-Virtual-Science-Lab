@@ -23,12 +23,12 @@ for (let i = 1; i <= 5; i++) {
       className="bg-indigo-50 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-6 sm:mb-0 text-base"
       key={i}
     >
-      <th className="observation-table-header">পর্যবেক্ষণ সংখ্যা</th>
-      <th className="observation-table-header">রোধ, R (Ω)</th>
+      <th className="observation-table-header">观测序号</th>
+      <th className="observation-table-header">电阻 R (Ω)</th>
       <th className="observation-table-header">
-        ব্যালেন্সিং দৈর্ঘ্য, AB = l (সেমি)
+        平衡长度 AB = l (cm)
       </th>
-      <th className="observation-table-header">দৈর্ঘ্য, BC = (100-l) (সেমি)</th>
+      <th className="observation-table-header">长度 BC = (100-l) (cm)</th>
       <th className="observation-table-header sm:w-32">
         <img
           src={Image20}
@@ -38,10 +38,10 @@ for (let i = 1; i <= 5; i++) {
         (Ω)
       </th>
       <th className="observation-table-header">
-        ব্যালেন্সিং দৈর্ঘ্য, A'B '= l' (সেমি)
+        平衡长度 A'B' = l' (cm)
       </th>
       <th className="observation-table-header">
-        দৈর্ঘ্য, B'C'= (100-l') (সেমি)
+        长度 B'C' = (100-l') (cm)
       </th>
       <th className="observation-table-header sm:w-32">
         <img
@@ -52,7 +52,7 @@ for (let i = 1; i <= 5; i++) {
         (Ω)
       </th>
       <th className="observation-table-header  sm:border-0  sm:w-32">
-        গড়{' '}
+        平均{' '}
         <img
           src={Image22}
           alt="observation"
@@ -73,13 +73,13 @@ for (let i = 1; i <= 5; i++) {
       className="bg-indigo-50 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-6 sm:mb-0 text-base w-56 sm:w-full"
       key={i}
     >
-      <th className="observation-table-header">পর্যবেক্ষণ সংখ্যা</th>
-      <th className="observation-table-header">পর্যবেক্ষণ PSR (mm)</th>
-      <th className="observation-table-header">পর্যবেক্ষণ HSR, (a) (mm)</th>
-      <th className="observation-table-header">সংশোধিত HSR, (a+Z) (mm)</th>
-      <th className="observation-table-header">সংশোধিত HSR x LC (mm)</th>
+      <th className="observation-table-header">观测序号</th>
+      <th className="observation-table-header">主尺读数 PSR (mm)</th>
+      <th className="observation-table-header">游标读数 HSR (a) (mm)</th>
+      <th className="observation-table-header">修正 HSR (a+Z) (mm)</th>
+      <th className="observation-table-header">修正 HSR × LC (mm)</th>
       <th className="observation-table-header sm:border-0">
-        মোট পঠন, d = PSR + (সংশোধিত HSR x LC) (mm)
+        总读数 d = PSR + (修正 HSR × LC) (mm)
       </th>
     </tr>
   );
@@ -96,7 +96,7 @@ const ObservationTemplate = () => {
     content: () => componentRef.current,
   });
 
-  document.title = `মিটার ব্রিজ ব্যবহার করে কোন তারের আপেক্ষিক রোধ নির্ণয়। - ${auth.user.name}`;
+  document.title = `用米桥法测定导线相对电阻 - ${auth.user.name}`;
 
   return (
     <React.Fragment>
@@ -106,8 +106,8 @@ const ObservationTemplate = () => {
           className="flex flex-wrap text-lg font-body text-gray-900 leading-relaxed tracking-wide px-4 py-5"
         >
           <div className="mb-2 w-full">
-            <h2 className="font-semibold"> পর্যবেক্ষণ: </h2>
-            <p> প্রদত্ত তারের রোধের সন্ধান করতে: </p>
+            <h2 className="font-semibold"> 观察记录：</h2>
+            <p> 测定给定导线的电阻：</p>
           </div>
           {/* Table 1*/}
           <div className="flex items-center justify-center">
@@ -123,13 +123,13 @@ const ObservationTemplate = () => {
                         className="p-3 text-center border-brand-700 border-l border-r"
                         colSpan="3"
                       >
-                        বাম ফাঁক এর রোধ তার
+                        左槽电阻丝
                       </th>
                       <th
                         className="p-3 text-center border-brand-700 border-l border-r"
                         colSpan="3"
                       >
-                        ডান ফাঁক এর রোধ তার
+                        右槽电阻丝
                       </th>
                       <th className="p-3 w-32" />
                     </tr>
@@ -160,9 +160,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput1}
                             defaultValue={data.input1}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -176,9 +176,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput2}
                             defaultValue={data.input2}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -192,9 +192,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput3}
                             defaultValue={data.input3}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -208,9 +208,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput4}
                             defaultValue={data.input4}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -224,9 +224,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput5}
                             defaultValue={data.input5}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -240,9 +240,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput6}
                             defaultValue={data.input6}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -256,9 +256,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput7}
                             defaultValue={data.input7}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -272,9 +272,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput8}
                             defaultValue={data.input8}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -291,7 +291,7 @@ const ObservationTemplate = () => {
           <div className="font-body">
             {' '}
             <p className="py-4 px-5">
-              গড় রোধ, X ={' '}
+              平均电阻 X ={' '}
               <input
                 name="X-resistance"
                 type="number"
@@ -303,10 +303,10 @@ const ObservationTemplate = () => {
               Ω
             </p>
             <p className="font-semibold px-5 py-1">
-              প্রদত্ত তারের ব্যাসটি সন্ধান করতে:
+              测定导线直径：
             </p>
             <p className="py-2 px-5">
-              স্ক্রু গেজের সর্বনিম্ন গণনা (LC) ={' '}
+              螺旋测微器最小刻度 (LC) ={' '}
               <input
                 name="LC-resistance"
                 type="number"
@@ -318,7 +318,7 @@ const ObservationTemplate = () => {
               mm
             </p>
             <p className="py-2 px-5">
-              স্ক্রু গজের জিরো সংশোধন (Z)={' '}
+              螺旋测微器零误差 (Z) ={' '}
               <input
                 name="Z-resistance"
                 type="number"
@@ -358,9 +358,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput11}
                             defaultValue={data.input11}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -374,9 +374,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput22}
                             defaultValue={data.input22}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -390,9 +390,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput33}
                             defaultValue={data.input33}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -406,9 +406,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput44}
                             defaultValue={data.input44}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -422,9 +422,9 @@ const ObservationTemplate = () => {
                             placeholder={data.placeInput55}
                             defaultValue={data.input55}
                             required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
+                              data.id === '1' ||
+                              data.id === '2' ||
+                              data.id === '3'
                                 ? true
                                 : false
                             }
@@ -440,7 +440,7 @@ const ObservationTemplate = () => {
           {/* Observation Result 2 */}
           <div className="font-body mb-2">
             <p className="py-4 px-5">
-              গড়, d ={' '}
+              平均 d ={' '}
               <input
                 name="d-resistance"
                 type="number"
@@ -451,9 +451,9 @@ const ObservationTemplate = () => {
               />{' '}
               mm
             </p>
-            <p className="font-semibold px-5 py-1">গণনা:</p>
+            <p className="font-semibold px-5 py-1">计算：</p>
             <p className="py-2 px-5">
-              তারের ব্যাস, d ={' '}
+              导线直径 d ={' '}
               <input
                 name="mean-d-resistance"
                 type="number"
@@ -465,7 +465,7 @@ const ObservationTemplate = () => {
               mm
             </p>
             <p className="py-3 px-5">
-              তারের ব্যাসার্ধ, r ={' '}
+              导线半径 r ={' '}
               <input
                 name="r-resistance"
                 type="number"
@@ -503,7 +503,7 @@ const ObservationTemplate = () => {
               </p>
             </div>
             <p className="py-3 px-6">
-              তারের দৈর্ঘ্য, L ={' '}
+              导线长度 L ={' '}
               <input
                 name="L-resistance"
                 type="number"
@@ -529,7 +529,7 @@ const ObservationTemplate = () => {
               </p>
             </div>
             <p className="py-4 px-5">
-              গড় রোধ, X ={' '}
+              平均电阻 X ={' '}
               <input
                 name="X-main-resistance"
                 type="number"
@@ -541,7 +541,7 @@ const ObservationTemplate = () => {
               Ω
             </p>
             <p className="py-4 px-5">
-              তারের রোধ ক্ষমতা (নির্দিষ্ট রোধ),
+              电阻率（比电阻）
               <span className="ml-28 block">
                 <img src={Image23} alt="observation-result" className="py-4" />{' '}
                 ={' '}
@@ -556,9 +556,9 @@ const ObservationTemplate = () => {
                 Ω
               </span>
             </p>
-            <p className="font-semibold px-5 py-2">ফলাফল:</p>
+            <p className="font-semibold px-5 py-2">结果：</p>
             <p className="py-3 px-5">
-              প্রদত্ত রোধ তারের অজানা রোধ, X ={' '}
+              导线未知电阻 X ={' '}
               <input
                 name="x-result-resistance"
                 type="number"
@@ -570,7 +570,7 @@ const ObservationTemplate = () => {
               Ω
             </p>
             <p className="py-3 px-5">
-              প্রদত্ত রোধ তারের নির্দিষ্ট রোধ (রোধ ক্ষমতা), ρ ={' '}
+              导线电阻率 ρ ={' '}
               <input
                 name="x-result-resistance"
                 type="number"
@@ -590,7 +590,7 @@ const ObservationTemplate = () => {
             type="submit"
             onClick={() => setShowModal(true)}
           >
-            <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" /> জমা দিন
+            <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" /> 提交
           </button>
           <button
             className="dashboard-button"
@@ -598,7 +598,7 @@ const ObservationTemplate = () => {
             onClick={() => setShowChart(true)}
           >
             <FontAwesomeIcon icon={faChartLine} className="mr-2" />
-            লেখচিত্র দেখুন
+            查看图表
           </button>
         </div>
       </form>
@@ -633,7 +633,7 @@ const ObservationTemplate = () => {
                         </svg>
                       </div>
                       <p className="font-body text-brand-900 dark:text-gray-100 text-lg py-5 px-12">
-                        আপনার পরীক্ষণের সকল তথ্য সংরক্ষণ করা হয়েছে।
+                        你的实验数据已保存。
                       </p>
                       <div className="flex items-center justify-center gap-4 w-1/2 mt-2 mb-5 mx-auto">
                         <button
@@ -641,7 +641,7 @@ const ObservationTemplate = () => {
                           className="py-2 px-4 bg-dark-brand-900 hover:bg-brand-900 focus:ring-indigo-800 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-body font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                           onClick={handlePrint}
                         >
-                          ডাউনলোড করুন
+                          下载
                         </button>
                       </div>
                     </Fade>

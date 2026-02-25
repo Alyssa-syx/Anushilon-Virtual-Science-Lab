@@ -17,7 +17,7 @@ import VideoTemplate from './VideoTemplate';
 
 const SimulationTemplate = () => {
   const [openTab, setOpenTab] = React.useState(1);
-  document.title = 'মিটার ব্রিজ ব্যবহার করে কোন তারের আপেক্ষিক রোধ নির্ণয়।';
+  document.title = '用米桥法测定导线相对电阻';
 
   // YouTube video ID
   const videoSimulationId = {
@@ -38,7 +38,7 @@ const SimulationTemplate = () => {
                   to="/simulation-phy"
                   className="font-medium text-brand-900"
                 >
-                  সিমুলেশন
+                  仿真实验
                 </NavLink>
               </li>
               <li>
@@ -50,7 +50,7 @@ const SimulationTemplate = () => {
                   to="/simulation-phy"
                   className="font-medium text-brand-900"
                 >
-                  পদার্থ বিজ্ঞান
+                  物理
                 </NavLink>
               </li>
               <li>
@@ -58,7 +58,7 @@ const SimulationTemplate = () => {
               </li>
               <li>
                 <span className="text-base">
-                  মিটার ব্রিজ ব্যবহার করে কোন তারের আপেক্ষিক রোধ নির্ণয়।
+                  用米桥法测定导线相对电阻
                 </span>
               </li>
             </ol>
@@ -80,7 +80,7 @@ const SimulationTemplate = () => {
                 href="#link1"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faBook} className="mr-1" /> তত্ত্ব
+                <FontAwesomeIcon icon={faBook} className="mr-1" /> 理论
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -99,7 +99,7 @@ const SimulationTemplate = () => {
                 href="#link2"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faTasks} className="mr-1" /> কার্যপ্রণালী
+                <FontAwesomeIcon icon={faTasks} className="mr-1" /> 步骤
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -118,7 +118,7 @@ const SimulationTemplate = () => {
                 href="#link3"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faVideo} className="mr-1" /> ভিডিও
+                <FontAwesomeIcon icon={faVideo} className="mr-1" /> 视频
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -134,7 +134,7 @@ const SimulationTemplate = () => {
                 role="tablist"
               >
                 <FontAwesomeIcon icon={faPlayCircle} className="mr-1" />{' '}
-                অ্যানিমেশন
+                动画
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -153,7 +153,7 @@ const SimulationTemplate = () => {
                 href="#link5"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faDiceD6} className="mr-1" /> সিমুলেটর
+                <FontAwesomeIcon icon={faDiceD6} className="mr-1" /> 仿真器
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -172,7 +172,7 @@ const SimulationTemplate = () => {
                 href="#link6"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faFlask} className="mr-1" /> পর্যবেক্ষণ
+                <FontAwesomeIcon icon={faFlask} className="mr-1" /> 观察记录
               </a>
             </li>
           </ul>

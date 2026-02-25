@@ -70,8 +70,8 @@ const Partner = () => {
     >
       <div className="px-4 pt-0 sm:pt-14 pb-14 mx-auto max-w-7xl">
         <SectionTitle
-          title="আমাদের প্লাটফর্মে নিবন্ধনকৃত শিক্ষা প্রতিষ্ঠান সমূহ"
-          description="আপনার শিক্ষা প্রতিষ্ঠানটি যুক্ত করুন অনুশীলনের সাথে এবং উপভোগ করুন শিক্ষার্থীদের সিমুলেশানের অভিজ্ঞতা। আপনার প্রতিষ্ঠানের শিক্ষাথীদের মনিটরিং এবং শিক্ষদের এক্টিভিটি পর্যাবেক্ষন করতে এখনই রেজিস্ট্রেশন করুন।"
+          title="合作教育机构"
+          description="将你的学校或机构接入AI虚拟科学实验室，让学生体验仿真实验。注册后可监控学生学习进度、查看教师活动，助力科学教育。"
           space="mb-12"
         />
         <Fade bottom>
@@ -95,11 +95,17 @@ const Partner = () => {
                       key={index}
                       style={{ width: "180px" }}
                     >
-                      <img
-                        src={item.image.default}
-                        alt="Logo"
-                        className="block object-contain h-32 mb-6"
-                      />
+                      <div className="w-36 h-36 flex items-center justify-center mb-6 shrink-0">
+                        <img
+                          src={item.image.default}
+                          alt="合作机构徽标"
+                          className="block w-full h-full object-contain"
+                          style={{
+                            maskImage: "radial-gradient(circle, black 52%, transparent 72%)",
+                            WebkitMaskImage: "radial-gradient(circle, black 52%, transparent 72%)",
+                          }}
+                        />
+                      </div>
                     </SwiperSlide>
                   </div>
                 ))}
@@ -110,7 +116,7 @@ const Partner = () => {
           {/* Institution Registration Button */}
           <div className="flex justify-center mt-8">
             <Link to="/registration" className="deep-button focus:ring-0">
-              আপনার শিক্ষা প্রতিষ্ঠানটি নিবন্ধন করুন এখনই
+              立即注册你的教育机构
             </Link>
           </div>
         </Fade>

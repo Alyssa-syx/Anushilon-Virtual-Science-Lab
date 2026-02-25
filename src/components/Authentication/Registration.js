@@ -21,7 +21,7 @@ const Registration = () => {
     e.preventDefault();
     history.push('/');
     toast.error(
-      'দুঃখিত, এই মুহূর্তে শিক্ষা প্রতিষ্ঠানের নিবন্ধনকরণ বন্ধ রয়েছে! 😓'
+      '抱歉，机构注册功能暂未开放！😓'
     );
   };
 
@@ -38,7 +38,7 @@ const Registration = () => {
             <div className="leading-loose">
               <form className="max-w-lg px-10 py-6 m-auto bg-white bg-opacity-25 rounded shadow-xl font-body">
                 <p className="mb-6 text-2xl text-center text-white font-semibold">
-                  শিক্ষা প্রতিষ্ঠান নিবন্ধন করুন
+                  教育机构注册
                 </p>
                 {/* Registration Form*/}
                 <Slide bottom cascade>
@@ -55,7 +55,7 @@ const Registration = () => {
                         name="InstitutionName"
                         type="text"
                         className="registration-input"
-                        placeholder="আপনার শিক্ষা প্রতিষ্ঠানের নাম প্রদান করুন"
+                        placeholder="请输入机构名称"
                       />
                     </div>
                   </div>
@@ -73,7 +73,7 @@ const Registration = () => {
                         name="InstitutionNameBangla"
                         type="text"
                         className="registration-input"
-                        placeholder="আপনার শিক্ষা প্রতিষ্ঠানের নাম বাংলায় প্রদান করুন "
+                        placeholder="请输入机构中文名称"
                       />
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const Registration = () => {
                         name="InstitutionAddress"
                         type="text"
                         className="registration-input"
-                        placeholder="আপনার শিক্ষা প্রতিষ্ঠানের সম্পূর্ণ ঠিকানা প্রদান করুন"
+                        placeholder="请输入机构完整地址"
                       />
                     </div>
                   </div>
@@ -109,7 +109,7 @@ const Registration = () => {
                         name="InstitutionTI"
                         type="text"
                         className="registration-input"
-                        placeholder="আপনার শিক্ষা প্রতিষ্ঠানের TIN নাম্বার প্রদান করুন"
+                        placeholder="请输入机构税号"
                       />
                     </div>
                   </div>
@@ -127,7 +127,7 @@ const Registration = () => {
                         name="name"
                         type="text"
                         className="registration-input"
-                        placeholder="আপনার নাম প্রদান করুন"
+                        placeholder="请输入姓名"
                       />
                     </div>
                   </div>
@@ -145,7 +145,7 @@ const Registration = () => {
                         name="email"
                         type="email"
                         className="registration-input"
-                        placeholder="আপনার ইমেইল প্রদান করুন"
+                        placeholder="请输入邮箱"
                       />
                     </div>
                   </div>
@@ -164,7 +164,7 @@ const Registration = () => {
                         name="password"
                         type="password"
                         className="registration-input"
-                        placeholder="আপনার পাসওয়ার্ড প্রদান করুন "
+                        placeholder="请输入密码"
                       />
                     </div>
                   </div>
@@ -183,7 +183,7 @@ const Registration = () => {
                         name="password"
                         type="password"
                         className="registration-input"
-                        placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
+                        placeholder="请再次输入密码"
                       />
                     </div>
                   </div>
@@ -193,7 +193,7 @@ const Registration = () => {
                       className="w-full px-4 py-2 font-semibold font-body text-base tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-dark-brand-900 focus:outline-none focus:bg-deep-purple-900"
                       onClick={handleSubmit}
                     >
-                      নিবন্ধন করুন
+                      注册
                     </button>
                   </div>
                 </Slide>

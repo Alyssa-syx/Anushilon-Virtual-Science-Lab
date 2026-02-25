@@ -70,7 +70,7 @@ const VideoTemplate = (props) => {
           rel="noopener noreferrer"
           className="font-semibold text-brand-900 text-right pt-4 text-sm sm:text-base tracking-wider"
         >
-          সোর্স
+          来源
         </a>
       </div>
     </div>

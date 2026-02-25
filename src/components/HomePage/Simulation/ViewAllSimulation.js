@@ -63,11 +63,11 @@ const ViewAllSimulation = (props) => {
               </button>
               <h2 className="font-display font-bold text-brand-900 text-3xl text-center pt-1 pb-4">
                 {props.selectTab === 1
-                  ? 'পদার্থ বিজ্ঞান'
+                  ? '物理'
                   : props.selectTab === 2
-                  ? 'রসায়ন'
+                  ? '化学'
                   : props.selectTab === 3
-                  ? 'জীব বিজ্ঞান'
+                  ? '生物'
                   : null}
               </h2>
             </div>
@@ -90,7 +90,7 @@ const ViewAllSimulation = (props) => {
                       href="#12"
                       role="tablist"
                     >
-                      <BookIcon /> দ্বাদশ শ্রেণী
+                      <BookIcon /> 高三
                     </a>
                   </li>
                   <li className="simulation-class-list ">
@@ -105,7 +105,7 @@ const ViewAllSimulation = (props) => {
                       href="#11"
                       role="tablist"
                     >
-                      <BookIcon /> একাদশ শ্রেণী
+                      <BookIcon /> 高二
                     </a>
                   </li>
                   <li className="simulation-class-list ">
@@ -120,7 +120,7 @@ const ViewAllSimulation = (props) => {
                       href="#10"
                       role="tablist"
                     >
-                      <BookIcon /> দশম শ্রেণী
+                      <BookIcon /> 高一
                     </a>
                   </li>
                   <li className="simulation-class-list ">
@@ -135,7 +135,7 @@ const ViewAllSimulation = (props) => {
                       href="#9"
                       role="tablist"
                     >
-                      <BookIcon /> নবম শ্রেণী
+                      <BookIcon /> 初三
                     </a>
                   </li>
                 </ul>

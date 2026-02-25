@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { db } from '../../configs/firebase';
@@ -39,7 +39,7 @@ const Conversession = () => {
       name,
       email,
       avatar,
-      date: moment().locale('bn-bd').format('LLL'),
+      date: moment().locale('zh-cn').format('LLL'),
     });
 
     setFormValue('');
@@ -92,7 +92,7 @@ const Conversession = () => {
               type="text"
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
-              placeholder="এখানে আপনার মতামত লিখুন..."
+              placeholder="输入你的消息..."
               className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-full py-3"
             />
             <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">

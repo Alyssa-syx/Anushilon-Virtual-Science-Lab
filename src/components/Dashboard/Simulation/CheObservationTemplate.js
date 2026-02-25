@@ -1,391 +1,195 @@
-import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import Fade from 'react-reveal/Fade';
-import { useReactToPrint } from 'react-to-print';
-import { DataTable1 } from '../../../data/phy121Observation';
-// Table 1 Header for mobile device
-const tableHeader1 = [];
-
-for (let i = 1; i <= 5; i++) {
-  tableHeader1.push(
-    <tr
-      className="bg-indigo-50 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-6 sm:mb-0 text-base"
-      key={i}
-    >
-      <th className="observation-table-header">পর্যবেক্ষণ সংখ্যা</th>
-      <th className="observation-table-header">
-        Fe<sup>2+</sup> দ্রবনের গৃহীত আয়তন (cm<sup>3</sup>) )
-      </th>
-      <th className="observation-table-header">১ম পাঠ</th>
-      <th className="observation-table-header">২য় পাঠ </th>
-
-      <th className="observation-table-header">
-        পার্থক্য (KMnO₄ দ্রবনের আয়তন) (cm<sup>3</sup>)
-      </th>
-      <th className="observation-table-header">
-        KMnO₄ গড় দ্রবনের আয়তন (cm<sup>3</sup>)
-      </th>
-    </tr>
-  );
-}
+import { faClipboardCheck, faStar, faBrain, faEye, faHandSparkles, faRedo, faVial, faPalette, faTint, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const CheObservationTemplate = () => {
-  const { auth } = useSelector((state) => state);
+  const [stepAcid, setStepAcid] = useState('');
+  const [endColor, setEndColor] = useState('');
+  const [volume, setVolume] = useState('');
+  const [apiKey, setApiKey] = useState(''); // 临时存放你的 API Key
+  
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [report, setReport] = useState(null);
 
-  const [showModal, setShowModal] = useState(false);
+  // 🧠 真实调用大模型 API
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!apiKey) {
+      alert("请先在下方输入你的 Gemini API Key 才能唤醒精灵哦！");
+      return;
+    }
+    const val = parseFloat(volume);
+    if (isNaN(val)) return;
 
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+    setIsAnalyzing(true);
+    
+    // 🎭 Prompt Engineering (提示词工程)：定义 AI 人设和打分规则
+    const prompt = `
+    你是一个面向中小学生的化学实验AI导师“探索精灵”。
+    学生刚刚完成了“高锰酸钾滴定检测地下水铁锈”的虚拟实验。
+    学生的汇报数据如下：
+    1. 是否加了稀硫酸：${stepAcid === 'yes' ? '是' : '否'}
+    2. 观察到的终点颜色：${endColor === 'pink' ? '淡淡的粉红色' : endColor === 'brown' ? '棕褐色浑浊沉淀' : '极其浓烈的深紫红色'}
+    3. 消耗的高锰酸钾体积：${val} mL。
 
-  document.title = `KMnO₄ দ্রবন দ্বারা অজানা ঘনমাত্রার দ্রবনে ফেরাস আয়নের পরিমান নির্ণয়। - ${auth.user.name}`;
+    正确的实验逻辑是：必须加酸；终点颜色是淡淡的粉红；消耗体积如果在20-25mL之间算非常精准。
+    请根据他的表现，用充满童趣、鼓励或温和纠正的口吻写一段点评（约80字）。
+    并对他的“微观洞察力”(insight)、“湿实验操作”(operation)、“科学推理逻辑”(logic)打分（10到100的整数）。
+
+    你必须严格输出 JSON 格式（不要包含任何 Markdown 标记或额外说明）：
+    {
+      "feedback": "精灵的评语...",
+      "stats": {
+        "insight": 90,
+        "operation": 80,
+        "logic": 85
+      }
+    }
+    `;
+
+    try {
+      // 发送网络请求给大模型
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { response_mime_type: "application/json" } // 强制大模型只吐出 JSON
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      // 解析大模型返回的真实数据
+      const resultText = data.candidates[0].content.parts[0].text;
+      const resultJson = JSON.parse(resultText);
+
+      setReport(resultJson);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("呼叫精灵失败:", error);
+      alert("唤醒精灵失败啦！请检查 API Key 是否正确，或者网络是否能访问大模型服务。");
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const resetReport = () => {
+    setStepAcid('');
+    setEndColor('');
+    setVolume('');
+    setIsSubmitted(false);
+    setReport(null);
+  };
 
   return (
-    <React.Fragment>
-      <form>
-        <div
-          ref={componentRef}
-          className="flex flex-wrap text-lg font-body text-gray-900 leading-relaxed tracking-wide px-4 py-5"
-        >
-          <div className="mb-2 w-full">
-            <h2 className="font-semibold"> পর্যবেক্ষণ: </h2>
-            <p>
-              {' '}
-              KMnO₄ দ্রবন দ্বারা নমুনা দ্রবনে ফেরাস আয়নের পরিমান নির্ণয়:{' '}
-            </p>
-          </div>
-
-          {/* Table 1*/}
-          <div className="flex items-center justify-center">
-            <div className="container">
-              <div className="hidden sm:block">
-                <table className="w-full flex flex-row flex-no-wrap table-auto sm:bg-white rounded-lg overflow-hidden sm:shadow-4xl mt-3 -mb-3">
-                  {/* Table 1 Title */}
-                  <thead className="text-gray-800 ">
-                    <tr className="bg-indigo-50 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                      <th className="p-3 w-38" />
-                      <th className="p-3 w-40" />
-                      <th
-                        className="p-3 text-center border-brand-700 border-l border-r"
-                        colSpan="3"
-                      >
-                        ব্যুরেট পাঠ
-                      </th>
-
-                      <th className="p-3 w-44" />
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-              {/* Table 1 Start */}
-              <table className="w-full flex flex-row flex-no-wrap table-auto sm:bg-white rounded-lg overflow-hidden sm:shadow-4xl mb-5 mt-3">
-                <thead className="text-brand-900 font-body">
-                  {tableHeader1}
-                </thead>
-                {/* Table Row Data */}
-                <tbody className="flex-1 sm:flex-none">
-                  {DataTable1 &&
-                    DataTable1.map((data) => (
-                      <tr
-                        className="flex flex-col flex-no wrap sm:table-row mb-7 sm:mb-0 text-base tracking-wider"
-                        key={data.id}
-                      >
-                        <td className="observation-table-data p-2.5 sm:p-3 text-center font-display font-bold text-base">
-                          {data.id}
-                        </td>
-                        <td className="observation-table-data p-1.5 sm:p-3">
-                          <input
-                            name={data.name1}
-                            type="number"
-                            className="observation-table-input"
-                            placeholder={data.placeInput1}
-                            defaultValue={data.input1}
-                            required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
-                                ? true
-                                : false
-                            }
-                          />
-                        </td>
-                        <td className="observation-table-data p-2 sm:p-3">
-                          <input
-                            name={data.name2}
-                            type="number"
-                            className="observation-table-input"
-                            placeholder={data.placeInput2}
-                            defaultValue={data.input2}
-                            required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
-                                ? true
-                                : false
-                            }
-                          />
-                        </td>
-                        <td className="observation-table-data p-2 sm:p-3">
-                          <input
-                            name={data.name3}
-                            type="number"
-                            className="observation-table-input"
-                            placeholder={data.placeInput3}
-                            defaultValue={data.input3}
-                            required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
-                                ? true
-                                : false
-                            }
-                          />
-                        </td>
-                        <td className="observation-table-data p-2 sm:p-3">
-                          <input
-                            name={data.name4}
-                            type="number"
-                            className="observation-table-input"
-                            placeholder={data.placeInput4}
-                            defaultValue={data.input4}
-                            required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
-                                ? true
-                                : false
-                            }
-                          />
-                        </td>
-                        <td className="observation-table-data p-2 sm:p-3">
-                          <input
-                            name={data.name5}
-                            type="number"
-                            className="observation-table-input"
-                            placeholder={data.placeInput5}
-                            defaultValue={data.input5}
-                            required={
-                              data.id === '১' ||
-                              data.id === '২' ||
-                              data.id === '৩'
-                                ? true
-                                : false
-                            }
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Observation Result 1*/}
-          <div className="w-full font-body">
-            {' '}
-            <p className="pi-0 sm:pt-4 pb-2 px-5 font-semibold">গণনা : </p>
-            <p className="py-2 px-5">
-              KMnO₄ দ্রবনের আয়তন, V<sub>2</sub> ={' '}
-              <input
-                name="LC-resistance"
-                type="number"
-                className="observation-result"
-                placeholder="5.35"
-                defaultValue=""
-                required
-              />{' '}
-              cm<sup>3</sup>
-            </p>
-            <p className="py-2 px-5">
-              KMnO₄ দ্রবনের ঘনমাত্রা, S<sub>2</sub> ={' '}
-              <input
-                name="Z-resistance"
-                type="number"
-                className="observation-result"
-                placeholder="0.099"
-                defaultValue=""
-                required
-              />{' '}
-              M
-            </p>
-          </div>
-
-          {/* Observation Result 2 */}
-          <div className="font-body mb-2 mt-4 sm:mt-6 w-full">
-            <p className="px-5 py-1">আমরা জানি,</p>
-            <p className="py-3 px-5">
-              1 cm<sup>3</sup> 1 M KMnO₄ দ্রবণ = 0.2792 g Fe<sup>2+</sup> দ্রবন
-            </p>
-            <p className="py-5 px-5 flex flex-wrap">
-              <input
-                name="mean-d-resistance"
-                type="number"
-                className="observation-result mr-2"
-                placeholder="5"
-                defaultValue=""
-                required
-              />{' '}
-              cm<sup>3</sup>
-              <input
-                name="mean-d-resistance"
-                type="number"
-                className="observation-result mr-2"
-                placeholder="5.00"
-                defaultValue=""
-                required
-              />{' '}
-              M KMnO₄ দ্রবণ = {'  '}0.2792 x
-              <input
-                name="mean-d-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="0.099"
-                defaultValue=""
-                required
-              />{' '}
-              x{' '}
-              <input
-                name="mean-d-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="0.099"
-                defaultValue=""
-                required
-              />{' '}
-              ={' '}
-              <input
-                name="mean-d-resistance"
-                type="number"
-                className="observation-result mx-2 mt-2 sm:mt-0"
-                placeholder="0.099"
-                defaultValue=""
-                required
-              />{' '}
-              g Fe
-            </p>
-            <p className="py-1 sm:py-4 px-5 flex flex-row">
-              এখন
-              <input
-                name="r-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="10.26"
-                defaultValue=""
-                required
-              />{' '}
-              cm<sup>3</sup> দ্রবণে আয়রন আছে ={' '}
-              <input
-                name="r1-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="1.382"
-                defaultValue=""
-                required
-              />{' '}
-              g
-            </p>
-
-            <p className="font-semibold px-5 py-2">ফলাফল:</p>
-
-            <p className="py-3 px-5 flex flex-row">
-              100 cm<sup>3</sup> সরবাহকৃত দ্রবণে আয়রন আছে =
-              <input
-                name="x-result-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="0.1382"
-                defaultValue=""
-                required
-              />{' '}
-              x{' '}
-              <input
-                name="r-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="10.26"
-                defaultValue=""
-                required
-              />{' '}
-              ={' '}
-              <input
-                name="r1-resistance"
-                type="number"
-                className="observation-result mx-2"
-                placeholder="1.382"
-                defaultValue=""
-                required
-              />{' '}
-              g
-            </p>
-          </div>
+    <div className="p-4 md:p-8 bg-white rounded-xl">
+      <div className="text-center mb-6">
+        <div className="w-16 h-16 bg-brand-100 text-brand-900 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
+          <FontAwesomeIcon icon={faClipboardCheck} />
         </div>
+        <h2 className="text-2xl font-bold text-gray-800">探索精灵 - 任务绝密日志</h2>
+      </div>
 
-        {/* Buttons */}
-        <div className="w-full flex flex-row justify-center sm:justify-end  mt-4 sm:mt-0 mb-10 font-body mr-16">
-          <button
-            className="dashboard-button"
-            type="submit"
-            onClick={() => setShowModal(true)}
-          >
-            <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" /> জমা দিন
+      {/* 🔑 API Key 输入区 (仅用于本地 Demo 测试) */}
+      {!isSubmitted && (
+        <div className="max-w-xl mx-auto mb-6 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">🔗 开发者调试：填入你的 API Key 唤醒大脑</label>
+          <input 
+            type="password" 
+            value={apiKey} 
+            onChange={(e) => setApiKey(e.target.value)} 
+            placeholder="AIzaSy..." 
+            className="w-full p-2 text-sm rounded border border-gray-300 focus:outline-none focus:border-brand-500"
+          />
+        </div>
+      )}
+
+      {!isSubmitted ? (
+        /* 📝 多维表单 */
+        <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6 animate-fade-in-up">
+          {/* 问题 1：操作步骤 */}
+          <div className="bg-blue-50 p-5 rounded-2xl border border-blue-100 shadow-sm">
+             <label className="block text-gray-800 font-bold mb-3 flex items-center gap-2"><FontAwesomeIcon icon={faVial} className="text-blue-500"/> 1. 在滴加 KMnO₄ 之前，你是否加了酸？</label>
+             <div className="flex gap-4">
+               <label className="flex-1 cursor-pointer">
+                 <input type="radio" name="acid" value="yes" required onChange={(e) => setStepAcid(e.target.value)} className="peer sr-only" />
+                 <div className="text-center p-3 rounded-xl border-2 border-gray-200 bg-white peer-checked:border-blue-500 peer-checked:bg-blue-100 peer-checked:text-blue-700 font-bold">是</div>
+               </label>
+               <label className="flex-1 cursor-pointer">
+                 <input type="radio" name="acid" value="no" onChange={(e) => setStepAcid(e.target.value)} className="peer sr-only" />
+                 <div className="text-center p-3 rounded-xl border-2 border-gray-200 bg-white peer-checked:border-red-500 peer-checked:bg-red-50 peer-checked:text-red-700 font-bold">否</div>
+               </label>
+             </div>
+          </div>
+
+          {/* 问题 2：现象观察 */}
+          <div className="bg-purple-50 p-5 rounded-2xl border border-purple-100 shadow-sm">
+             <label className="block text-gray-800 font-bold mb-3 flex items-center gap-2"><FontAwesomeIcon icon={faPalette} className="text-purple-500"/> 2. 滴定到达“终点”时，水样变成了什么颜色？</label>
+             <select required value={endColor} onChange={(e) => setEndColor(e.target.value)} className="w-full p-3 rounded-xl border-2 border-purple-200 bg-white font-medium text-gray-700">
+               <option value="" disabled>请选择...</option>
+               <option value="pink">淡淡的粉红色（半分钟不褪色）</option>
+               <option value="brown">棕褐色浑浊沉淀</option>
+               <option value="purple">深紫红色</option>
+             </select>
+          </div>
+
+          {/* 问题 3：数据记录 */}
+          <div className="bg-green-50 p-5 rounded-2xl border border-green-100 shadow-sm">
+             <label className="block text-gray-800 font-bold mb-3 flex items-center gap-2"><FontAwesomeIcon icon={faTint} className="text-green-500"/> 3. 最终消耗了多少 mL 的高锰酸钾？</label>
+             <div className="flex items-center gap-3">
+               <input type="number" step="0.1" required value={volume} onChange={(e) => setVolume(e.target.value)} className="w-full p-3 text-lg rounded-xl border-2 border-green-200 bg-white" />
+               <span className="text-gray-600 font-bold">mL</span>
+             </div>
+          </div>
+
+          <button disabled={isAnalyzing} type="submit" className={`w-full text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-lg ${isAnalyzing ? 'bg-gray-400 cursor-not-allowed' : 'bg-brand-900 hover:bg-brand-800 hover:-translate-y-1'}`}>
+            {isAnalyzing ? <><FontAwesomeIcon icon={faSpinner} spin /> 探索精灵思考中...</> : <><FontAwesomeIcon icon={faStar} /> 提交给大模型分析</>}
           </button>
-        </div>
-      </form>
+        </form>
+      ) : (
+        /* 📊 AI 诊断报告状态 */
+        <div className="max-w-2xl mx-auto animate-fade-in-up">
+          <div className="bg-brand-50 p-6 rounded-2xl border border-brand-100 mb-6 relative shadow-sm">
+             <div className="absolute -top-6 -left-6 text-5xl drop-shadow-md">🧚‍♂️</div>
+             <h3 className="text-lg font-bold text-brand-900 mb-4 ml-6">大模型实时生成的专属评语：</h3>
+             <p className="text-gray-800 leading-relaxed ml-6 font-medium">{report.feedback}</p>
+          </div>
 
-      {/* Show Success Modal */}
-      {showModal ? (
-        <div>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-            onClick={() => setShowModal(false)}
-          >
-            <div className="relative w-auto my-6 mx-auto max-w-sm">
-              {/*content*/}
-              <div className="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-800 w-64 sm:w-96 m-auto">
-                <div className="w-full h-full text-center">
-                  <div className="flex h-full flex-col justify-between">
-                    <Fade top>
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-12 w-12 mt-4 m-auto text-green-500"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                          />
-                        </svg>
-                      </div>
-                      <p className="font-body text-brand-900 dark:text-gray-100 text-lg py-5 px-12">
-                        আপনার পরীক্ষণের সকল তথ্য সংরক্ষণ করা হয়েছে।
-                      </p>
-                      <div className="flex items-center justify-center gap-4 w-1/2 mt-2 mb-5 mx-auto">
-                        <button
-                          type="button"
-                          className="py-2 px-4 bg-dark-brand-900 hover:bg-brand-900 focus:ring-indigo-800 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-body font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                          onClick={handlePrint}
-                        >
-                          ডাউনলোড করুন
-                        </button>
-                      </div>
-                    </Fade>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-6">
+            <h3 className="text-lg font-bold text-gray-800 mb-5 text-center bg-gray-50 py-2 rounded-lg">大模型推算的科学雷达</h3>
+            <div className="space-y-5 px-2">
+              {[
+                { label: '微观洞察力 (颜色判定)', icon: faEye, color: 'blue', value: report.stats.insight },
+                { label: '湿实验操作 (步骤与用量)', icon: faHandSparkles, color: 'purple', value: report.stats.operation },
+                { label: '科学推理逻辑', icon: faBrain, color: 'green', value: report.stats.logic },
+              ].map((stat, idx) => (
+                <div key={idx}>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-bold text-gray-600 flex items-center gap-2"><FontAwesomeIcon icon={stat.icon} className={`text-${stat.color}-500`}/> {stat.label}</span>
+                    <span className={`text-sm font-bold text-${stat.color}-600`}>{stat.value}%</span>
+                  </div>
+                  <div className={`w-full bg-${stat.color}-100 rounded-full h-3 shadow-inner`}>
+                    <div className={`bg-gradient-to-r from-${stat.color}-400 to-${stat.color}-600 h-3 rounded-full transition-all duration-1000 ease-out`} style={{ width: `${stat.value}%` }}></div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
-          <div className="opacity-30 fixed inset-0 z-40 bg-black" />
+
+          <div className="text-center">
+            <button onClick={resetReport} className="text-gray-500 hover:text-brand-900 font-bold px-6 py-2 rounded-full border-2 border-transparent hover:border-gray-200 transition-all flex items-center justify-center gap-2 mx-auto">
+              <FontAwesomeIcon icon={faRedo} /> 再试一次
+            </button>
+          </div>
         </div>
-      ) : null}
-    </React.Fragment>
+      )}
+    </div>
   );
 };
 

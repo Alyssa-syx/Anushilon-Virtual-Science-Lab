@@ -34,7 +34,7 @@ function SideBar() {
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
           >
-            <span className="sr-only">বন্ধ করুন</span>
+            <span className="sr-only">关闭</span>
             <svg
               className="w-6 h-6 fill-current"
               viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ function SideBar() {
           {/* Logo */}
           <NavLink exact to="/" className="block mt-3 mx-auto">
             <span className="nav-link-light text-2xl font-display font-black tracking-wider cursor-pointer hover:text-purple-700">
-              অনুশীলন
+              AI虚拟科学实验室
             </span>
           </NavLink>
         </div>
@@ -54,7 +54,7 @@ function SideBar() {
         {/* Links */}
         <div>
           <h3 className="font-body text-sm uppercase text-gray-500 font-medium pl-3">
-            পৃষ্ঠা সমূহ
+            功能导航
           </h3>
           <ul className="mt-4">
             {/* Dashboard */}
@@ -104,7 +104,7 @@ function SideBar() {
                     />
                   </svg>
                   <span className="font-body text-base font-medium tracking-wider">
-                    ড্যাশবোর্ড
+                    工作台
                   </span>
                 </div>
               </NavLink>
@@ -156,7 +156,7 @@ function SideBar() {
                     />
                   </svg>
                   <span className="font-body text-base font-medium tracking-wider">
-                    ল্যাব রুম
+                    实验室
                   </span>
                 </div>
               </NavLink>
@@ -166,12 +166,9 @@ function SideBar() {
               className={`px-3 py-2 rounded-sm mb-3 last:mb-0 ${
                 page.startsWith('simulation-') && 'bg-dark-brand-900'
               } ${
-                (page ===
-                  'মিটার-ব্রিজ-ব্যবহার-করে-কোন-তারের-আপেক্ষিক-রোধ-নির্ণয়।' ||
-                  page ===
-                    'KMnO₄-দ্রবন-দ্বারা-অজানা-ঘনমাত্রার-দ্রবনে-ফেরাস-আয়নের-পরিমান-নির্ণয়।' ||
-                  page ===
-                    'সালোকসংশ্লেষণ-প্রক্রিয়ায়-ক্লোরোফিল-ও-আলোর-অপরিহার্যতার-পরীক্ষণ।') &&
+                (page === '米桥法测定导线相对电阻' ||
+                  page === '高锰酸钾测定亚铁离子' ||
+                  page === '光合作用叶绿素与光实验') &&
                 'bg-dark-brand-900'
               }`}
             >
@@ -218,22 +215,19 @@ function SideBar() {
                           ? 'text-indigo-200 hover:text-gray-200'
                           : 'text-gray-200 hover:text-indigo-200'
                       } ${
-                        (page ===
-                          'মিটার-ব্রিজ-ব্যবহার-করে-কোন-তারের-আপেক্ষিক-রোধ-নির্ণয়।' ||
-                          page ===
-                            'KMnO₄-দ্রবন-দ্বারা-অজানা-ঘনমাত্রার-দ্রবনে-ফেরাস-আয়নের-পরিমান-নির্ণয়।' ||
-                          page ===
-                            'সালোকসংশ্লেষণ-প্রক্রিয়ায়-ক্লোরোফিল-ও-আলোর-অপরিহার্যতার-পরীক্ষণ।') &&
+                        (page === '米桥法测定导线相对电阻' ||
+                          page === '高锰酸钾测定亚铁离子' ||
+                          page === '光合作用叶绿素与光实验') &&
                         'text-indigo-200 hover:text-gray-200'
                       }`}
                     >
-                      সিমুলেশন
+                      仿真实验
                     </span>
                   </div>
                   {/* Badge */}
                   <div className="flex flex-shrink-0 ml-2">
                     <span className="inline-flex items-center justify-center h-5 text-sm font-body font-medium text-gray-50 tracking-wider bg-indigo-600 px-2 rounded-sm">
-                    ৩+
+                    3+
                     </span>
                   </div>
                   {/* Icon */}
@@ -282,14 +276,13 @@ function SideBar() {
                       to="/simulation-phy"
                       className={`block text-gray-200 hover:text-indigo-200 transition duration-150 ${
                         (page === 'simulation-phy' ||
-                          page ===
-                            'মিটার-ব্রিজ-ব্যবহার-করে-কোন-তারের-আপেক্ষিক-রোধ-নির্ণয়।') &&
+                          page === '米桥法测定导线相对电阻') &&
                         'text-indigo-300 hover:text-indigo-400'
                       }`}
                       onClick={() => setSidebarOpen(!sidebarOpen)}
                     >
                       <span className="font-body text-sm font-medium">
-                        পদার্থ বিজ্ঞান
+                        物理
                       </span>
                     </NavLink>
                   </li>
@@ -299,14 +292,13 @@ function SideBar() {
                       to="/simulation-che"
                       className={`block text-gray-200  hover:text-indigo-200 transition duration-150" ${
                         (page === 'simulation-che' ||
-                          page ===
-                            'KMnO₄-দ্রবন-দ্বারা-অজানা-ঘনমাত্রার-দ্রবনে-ফেরাস-আয়নের-পরিমান-নির্ণয়।') &&
+                          page === '高锰酸钾测定亚铁离子') &&
                         'text-indigo-300 hover:text-indigo-400'
                       }`}
                       onClick={() => setSidebarOpen(!sidebarOpen)}
                     >
                       <span className="font-body  text-sm font-medium">
-                        রসায়ন
+                        化学
                       </span>
                     </NavLink>
                   </li>
@@ -316,14 +308,13 @@ function SideBar() {
                       to="/simulation-bio"
                       className={`block text-gray-200 hover:text-indigo-200 transition duration-150" ${
                         (page === 'simulation-bio' ||
-                          page ===
-                            'সালোকসংশ্লেষণ-প্রক্রিয়ায়-ক্লোরোফিল-ও-আলোর-অপরিহার্যতার-পরীক্ষণ।') &&
+                          page === '光合作用叶绿素与光实验') &&
                         'text-indigo-300 hover:text-indigo-400'
                       }`}
                       onClick={() => setSidebarOpen(!sidebarOpen)}
                     >
                       <span className="font-body text-sm font-medium">
-                        জীববিজ্ঞান{' '}
+                        生物{' '}
                       </span>
                     </NavLink>
                   </li>
@@ -371,7 +362,7 @@ function SideBar() {
                       />
                     </svg>
                     <span className="font-body text-base font-medium tracking-wider">
-                      কমিউনিটি
+                      社区
                     </span>
                   </div>
                 </div>
@@ -416,7 +407,7 @@ function SideBar() {
                     />
                   </svg>
                   <span className="font-body text-base font-medium tracking-wider">
-                    কথোপকথন
+                    消息
                   </span>
                 </div>
               </NavLink>
@@ -484,7 +475,7 @@ function SideBar() {
                     />
                   </svg>
                   <span className="font-body text-base font-medium tracking-wider">
-                    ওয়ার্কশপ
+                    工作坊
                   </span>
                 </div>
               </NavLink>
@@ -544,7 +535,7 @@ function SideBar() {
                     />
                   </svg>
                   <span className="font-body text-base font-medium tracking-wider">
-                    নোটিসবোর্ড
+                    公告板
                   </span>
                 </div>
               </NavLink>

@@ -19,54 +19,53 @@ const Footer = () => {
               <a
                 href="/"
                 aria-label="Go home"
-                title="অনুশীলন"
+                title="AI虚拟科学实验室"
                 className="inline-flex items-center"
               >
                 <span className="ml-2 text-2xl font-display font-bold tracking-wide text-white uppercase">
-                  অনুশীলন
+                  AI虚拟科学实验室
                 </span>
               </a>
               <div className="mt-6 lg:max-w-sm font-body">
                 <p className="text-sm text-indigo-50">
-                  নবম থেকে দ্বাদশ শ্রেণির পদার্থবিজ্ঞান, রসায়ন ও জীববিজ্ঞান
-                  বিষয়ের সকল ল্যাব এক্সপেরিমেন্ট এবং বিজ্ঞান চর্চার সকল সিমুলেশন
-                  এখন সবসময়, সম্পূর্ণ বিনামূল্যে।
+                  初一到高三物理、化学、生物全科实验与科学探索仿真，
+                  全天候免费开放。
                 </p>
               </div>
             </div>
             {/* Column 2 */}
             <div className="col-span-2 lg:col-span-3 space-y-2 text-sm font-body">
               <p className="text-base font-semibold tracking-wide text-white">
-                যোগাযোগ
+                联系我们
               </p>
               <div className="flex flex-wrap">
-                <p className="mr-1 mb-1 text-indigo-50">ফোন</p>
-                <a href="tel:+880-1790-123456" className="footer-info">
-                  +৮৮০-১৭৯০-১২৩৪৫৬
+                <p className="mr-1 mb-1 text-indigo-50">电话</p>
+                <a href="tel:+86-400-123-4567" className="footer-info">
+                  +86-400-123-4567
                 </a>
               </div>
               <div className="flex flex-wrap">
-                <p className="mr-1 mb-1 text-indigo-50">ইমেল:</p>
-                <a href="mailto:info@anushilon.com" className="footer-info">
-                  ইনফো@অনুশীলন.কম
+                <p className="mr-1 mb-1 text-indigo-50">邮箱：</p>
+                <a href="mailto:info@shiyanba.com" className="footer-info">
+                  info@shiyanba.com
                 </a>
               </div>
               <div className="flex flex-wrap">
-                <p className="mr-1 mb-1 text-indigo-50">ঠিকানা:</p>
+                <p className="mr-1 mb-1 text-indigo-50">地址：</p>
                 <a
                   href="https://www.google.com/maps"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-info"
                 >
-                  ঢাকা, বাংলাদেশ - ১২০৫
+                  北京市海淀区 100080
                 </a>
               </div>
             </div>
             {/* Column 3 */}
             <div className="col-span-1 lg:col-span-2 space-y-2 text-sm font-body">
               <p className="text-base font-semibold tracking-wide text-white">
-                বিভাগ সমূহ
+                快速导航
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
@@ -75,12 +74,12 @@ const Footer = () => {
                     smooth={true}
                     className="footer-category"
                   >
-                    আমাদের সিমুলেশন
+                    仿真实验
                   </Link>
                 </li>
                 <li>
                   <Link to="about" smooth={true} className="footer-category">
-                    আমাদের বৈশিষ্ট্য
+                    实验室特色
                   </Link>
                 </li>
                 <li>
@@ -89,12 +88,12 @@ const Footer = () => {
                     smooth={true}
                     className="footer-category"
                   >
-                    লোকেরা যা বলছে
+                    用户评价
                   </Link>
                 </li>
                 <li>
                   <Link to="about" smooth={true} className="footer-category">
-                    আমাদের সম্পর্কে
+                    关于我们
                   </Link>
                 </li>
               </ul>
@@ -102,7 +101,7 @@ const Footer = () => {
             {/* Column 4 */}
             <div className="col-span-3">
               <span className="text-base font-semibold font-body tracking-wide text-white">
-                সামাজিক মাধ্যম
+                关注我们
               </span>
               <div className="flex items-center mt-1 space-x-3">
                 <a href="/" className="footer-icon">
@@ -135,30 +134,29 @@ const Footer = () => {
                 </a>
               </div>
               <p className="mt-2 font-body text-sm text-indigo-50">
-                আমরা বিশ্বাস করি যে অনুশীলন প্রযুক্তিগত আধুনিক বিজ্ঞান শিক্ষার
-                জন্য অবকাঠামোগত অভাবের সমাধান হতে পারে।
+                我们相信「AI虚拟科学实验室」能帮助解决科技时代科学教育的基础设施不足问题。
               </p>
             </div>
           </div>
           {/* Down Footer */}
           <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t border-gray-50 lg:flex-row font-body">
             <p className="text-sm font-medium text-gray-400 tracking-wide">
-              &copy; কপিরাইট ২০২২ অনুশীলন কতৃক সমস্ত অধিকার সংরক্ষিত।
+              &copy; 2026 AI虚拟科学实验室 版权所有。
             </p>
             <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
               <li>
                 <a href="/" className="footer-terms">
-                  সচরাচর জিজ্ঞাস্য
+                  常见问题
                 </a>
               </li>
               <li>
                 <a href="/" className="footer-terms">
-                  গোপনীয়তা নীতি
+                  隐私政策
                 </a>
               </li>
               <li>
                 <a href="/" className="footer-terms">
-                  শর্তাদি &amp; শর্তসমূহ
+                  服务条款
                 </a>
               </li>
             </ul>

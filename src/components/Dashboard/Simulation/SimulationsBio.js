@@ -36,7 +36,7 @@ const SimulationsBio = () => {
                 href="#12"
                 role="tablist"
               >
-                <BookIcon /> দ্বাদশ শ্রেণী
+                <BookIcon /> 高三
               </a>
             </li>
             <li className="simulation-class-list ">
@@ -55,7 +55,7 @@ const SimulationsBio = () => {
                 href="#11"
                 role="tablist"
               >
-                <BookIcon /> একাদশ শ্রেণী
+                <BookIcon /> 高二
               </a>
             </li>
             <li className="simulation-class-list ">
@@ -74,7 +74,7 @@ const SimulationsBio = () => {
                 href="#10"
                 role="tablist"
               >
-                <BookIcon /> দশম শ্রেণী
+                <BookIcon /> 高一
               </a>
             </li>
             <li className="simulation-class-list ">
@@ -93,7 +93,7 @@ const SimulationsBio = () => {
                 href="#9"
                 role="tablist"
               >
-                <BookIcon /> নবম শ্রেণী
+                <BookIcon /> 初三
               </a>
             </li>
           </ul>

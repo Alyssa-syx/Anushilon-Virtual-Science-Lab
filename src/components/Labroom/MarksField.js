@@ -49,11 +49,11 @@ function MarksField({ imgUrl }) {
         setComment('');
       } catch (err) {
         toast.error(
-          `মন্তব্য করার সময় একটি ত্রুটি ছিল, অনুগ্রহ করে আবার চেষ্টা করুন!`
+          `评价提交失败，请重试！`
         );
       }
     } else {
-      toast.error('অনুগ্রহ করে মন্তব্য লিখুন ');
+      toast.error('请填写评价内容');
     }
   };
 
@@ -61,7 +61,7 @@ function MarksField({ imgUrl }) {
     <form className={classes.comment__box}>
       <TextField
         value={comment}
-        placeholder="মূল্যায়ন করুন..."
+        placeholder="写下你的评价..."
         onChange={(e) => setComment(e.target.value)}
         className={classes.comment__input}
         id="standard-basic"
@@ -74,7 +74,7 @@ function MarksField({ imgUrl }) {
         variant="outlined"
       >
         <span className="font-body text-base text-brand-900 font-medium tracking-wide">
-          জমা দিন
+          提交
         </span>
       </Button>
     </form>

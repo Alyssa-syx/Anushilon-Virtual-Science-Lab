@@ -1,6 +1,6 @@
 export const DataTable1 = [
   {
-    id: '১',
+    id: '1',
     name1: 'input1',
     input1: '',
     placeInput1: '8',
@@ -27,7 +27,7 @@ export const DataTable1 = [
     placeInput8: '7.82',
   },
   {
-    id: '২',
+    id: '2',
     name1: 'input1',
     input1: '',
     placeInput1: '5',
@@ -54,7 +54,7 @@ export const DataTable1 = [
     placeInput8: '1.65',
   },
   {
-    id: '৩',
+    id: '3',
     name1: 'input1',
     input1: '',
     placeInput1: '20',
@@ -81,7 +81,7 @@ export const DataTable1 = [
     placeInput8: '4.18',
   },
   {
-    id: '৪',
+    id: '4',
     name1: 'input1',
     input1: '',
     placeInput1: '15',
@@ -108,7 +108,7 @@ export const DataTable1 = [
     placeInput8: '5.67',
   },
   {
-    id: '৫',
+    id: '5',
     name1: 'input1',
     input1: '',
     placeInput1: '30',
@@ -138,7 +138,7 @@ export const DataTable1 = [
 
 export const DataTable2 = [
   {
-    id: '১',
+    id: '1',
     name11: 'input11',
     input11: '',
     placeInput11: '3.3',
@@ -156,7 +156,7 @@ export const DataTable2 = [
     placeInput55: '1.78',
   },
   {
-    id: '২',
+    id: '2',
     name11: 'input11',
     input11: '',
     placeInput11: '8.5',
@@ -174,7 +174,7 @@ export const DataTable2 = [
     placeInput55: '9.23',
   },
   {
-    id: '৩',
+    id: '3',
     name11: 'input11',
     input11: '',
     placeInput11: '4.1',
@@ -192,7 +192,7 @@ export const DataTable2 = [
     placeInput55: '8.24',
   },
   {
-    id: '৪',
+    id: '4',
     name11: 'input11',
     input11: '',
     placeInput11: '7.3',
@@ -210,7 +210,7 @@ export const DataTable2 = [
     placeInput55: '7.95',
   },
   {
-    id: '৫',
+    id: '5',
     name11: 'input11',
     input11: '',
     placeInput11: '3.9',
@@ -231,7 +231,7 @@ export const DataTable2 = [
 
 export const DataTable3 = [
   {
-    id: '১',
+    id: '1',
     name11: 'input11',
     input11: '',
     placeInput11: '40',
@@ -240,7 +240,7 @@ export const DataTable3 = [
     placeInput22: '50',
     name33: 'input33',
     input33: '',
-    placeInput33: 'সাদা',
+    placeInput33: '白色',
     name44: 'input4',
     input44: '',
     placeInput44: '7',
@@ -252,7 +252,7 @@ export const DataTable3 = [
     placeInput66: '28',
   },
   {
-    id: '২',
+    id: '2',
     name11: 'input11',
     input11: '',
     placeInput11: '100',
@@ -261,7 +261,7 @@ export const DataTable3 = [
     placeInput22: '100',
     name33: 'input33',
     input33: '',
-    placeInput33: 'লাল',
+    placeInput33: '红色',
     name44: 'input4',
     input44: '',
     placeInput44: '5',
@@ -273,7 +273,7 @@ export const DataTable3 = [
     placeInput66: '15',
   },
   {
-    id: '৩',
+    id: '3',
     name11: 'input11',
     input11: '',
     placeInput11: '40',
@@ -282,7 +282,7 @@ export const DataTable3 = [
     placeInput22: '100',
     name33: 'input33',
     input33: '',
-    placeInput33: 'নীল',
+    placeInput33: '蓝色',
     name44: 'input4',
     input44: '',
     placeInput44: '4',
@@ -294,7 +294,7 @@ export const DataTable3 = [
     placeInput66: '24',
   },
   {
-    id: '৪',
+    id: '4',
     name11: 'input11',
     input11: '',
     placeInput11: '100',
@@ -303,7 +303,7 @@ export const DataTable3 = [
     placeInput22: '50',
     name33: 'input33',
     input33: '',
-    placeInput33: 'সবুজ',
+    placeInput33: '绿色',
     name44: 'input4',
     input44: '',
     placeInput44: '5',
@@ -315,7 +315,7 @@ export const DataTable3 = [
     placeInput66: '29',
   },
   {
-    id: '৫',
+    id: '5',
     name11: 'input11',
     input11: '',
     placeInput11: '40',
@@ -324,7 +324,7 @@ export const DataTable3 = [
     placeInput22: '50',
     name33: 'input33',
     input33: '',
-    placeInput33: 'সাদা',
+    placeInput33: '白色',
     name44: 'input4',
     input44: '',
     placeInput44: '5',

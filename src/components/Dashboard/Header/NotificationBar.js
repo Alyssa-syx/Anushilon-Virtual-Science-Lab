@@ -5,16 +5,16 @@ import Transition from '../../../utils/Transition';
 // Notification Data
 const notifications = [
   {
-    name: 'অনুরোধ',
-    description: 'অনুগ্রহপূর্বক আপনার সকল তথ্য বাংলায় দাখিল করুন ',
-    time: '১ মিনিট আগে',
+    name: '提示',
+    description: '请填写完整信息',
+    time: '1 分钟前',
     href: '#0',
     icon: '📣',
   },
   {
-    name: 'অভ্যর্থনা',
-    description: 'অনুশীলনে আপনাকে স্বাগতম',
-    time: '২ মিনিট আগে',
+    name: '欢迎',
+    description: '欢迎来到AI虚拟科学实验室',
+    time: '2 分钟前',
     href: '#0',
     icon: '🚀',
   },
@@ -87,7 +87,7 @@ function NotificationBar() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="font-body text-sm font-semibold text-gray-500 uppercase pt-1.5 pb-2 px-4 border-b">
-            নোটিফিকেশন
+            通知
           </div>
           <ul>
             {notifications &&

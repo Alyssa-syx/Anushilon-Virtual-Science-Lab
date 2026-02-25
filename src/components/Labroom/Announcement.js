@@ -75,7 +75,7 @@ function Announcement({ image, imgUrl, name, date, content, marks, teacher }) {
 
       {marks && (
         <p className="pt-6 text-base font-body font-semibold tracking-wider text-brand-900">
-          <span className="font-medium text-gray-700"> ফলাফলঃ </span> {teacher}{' '}
+          <span className="font-medium text-gray-700"> 成绩：</span> {teacher}{' '}
           : <span className="text-gray-900">{marks}</span>
         </p>
       )}

@@ -25,7 +25,7 @@ function JoinClass() {
 
   const joinClass = async () => {
     if (classId === undefined || classId === '') {
-      toast.error(`ল্যাবরুম কোড প্রদান করুন`);
+      toast.error('请输入实验室代码');
       return;
     }
 
@@ -58,13 +58,13 @@ function JoinClass() {
         });
         // alert done
         toast.success(
-          `সফলভাবে ${classData.name} ল্যাব রুমে নথিভুক্ত করা হয়েছে`
+          `已成功加入 ${classData.name} 实验室`
         );
 
         setClassId('');
         handleClose();
       } else {
-        toast.error(`ল্যাবরুম খুঁজে পাওয়া যায়নি, সঠিক কোড প্রদান করুন`);
+        toast.error('未找到该实验室，请检查代码是否正确');
         setClassId('');
         handleClose();
       }
@@ -81,15 +81,15 @@ function JoinClass() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">ল্যাবরুমে যোগ দিন</DialogTitle>
+        <DialogTitle id="form-dialog-title">加入实验室</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            ল্যাবরুমে যোগদানের জন্য ল্যাবের জয়েনিং কোডটি লিখুন
+            输入实验室加入码以加入
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            label="ল্যাবরুমের কোড"
+            label="实验室代码"
             type="text"
             fullWidth
             value={classId}
@@ -98,10 +98,10 @@ function JoinClass() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            বাতিল করুন
+            取消
           </Button>
           <Button onClick={joinClass} color="primary">
-            যোগদান দিন
+            加入
           </Button>
         </DialogActions>
       </Dialog>

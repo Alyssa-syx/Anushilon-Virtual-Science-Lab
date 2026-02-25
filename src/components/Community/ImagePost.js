@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import firebase from 'firebase';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { db, storage } from '../../configs/firebase';
@@ -81,7 +81,7 @@ function ImagePost({ displayName }) {
                 caption: caption,
                 imgUrl: url,
                 username: displayName,
-                date: moment().locale('bn-bd').format('LLL'),
+                date: moment().locale('zh-cn').format('LLL'),
               });
 
               setProgress(0);
@@ -93,7 +93,7 @@ function ImagePost({ displayName }) {
         }
       );
     } else {
-      toast.error('অনুগ্রহ করে একটি ছবি নির্বাচন করুন');
+      toast.error('请选择一张图片');
     }
   }
 
@@ -101,7 +101,7 @@ function ImagePost({ displayName }) {
     <div className="image__upload">
       <div className="input__holder">
         <p className="text-base font-body font-semibold tracking-wider text-brand-900">
-          কমিউনিটিতে ক্যাপশন লিখে ছবি পোস্ট করুন
+          在社区发布带说明的图片
         </p>
 
         {showProgressBar && (
@@ -118,7 +118,7 @@ function ImagePost({ displayName }) {
           value={caption}
           rows={5}
           id="standard-basic"
-          label="ক্যাপশন লিখুন"
+          label="图片说明"
         />
         {/* Cover Photo */}
 
@@ -153,7 +153,7 @@ function ImagePost({ displayName }) {
                   htmlFor="image-cover"
                   className="relative cursor-pointer rounded-md font-body font-semibold tracking-wider text-brand-900 hover:text-blue-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
                 >
-                  <span>ছবি আপলোড করুন </span>
+                  <span>上传图片 </span>
                   <input
                     onChange={fileUpload}
                     type="file"
@@ -163,11 +163,11 @@ function ImagePost({ displayName }) {
                   />
                 </label>
                 <p className="pl-1 font-semibold tracking-wider font-body">
-                  অথবা এখানে টেনে আনুন
+                  或拖拽到此处
                 </p>
               </div>
               <p className="text-xs text-gray-600 tracking-wider font-body">
-                শুধুমাত্র ইমেজ ফাইল সমর্থন করবে
+                仅支持图片格式
               </p>
             </div>
           </label>
@@ -179,7 +179,7 @@ function ImagePost({ displayName }) {
           variant="contained"
           color="primary"
         >
-          ছবি পোস্ট করুন
+          发布图片
         </Button>
       </div>
     </div>

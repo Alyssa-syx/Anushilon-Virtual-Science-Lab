@@ -24,8 +24,8 @@ function Features() {
         {/* Main Content */}
         <Fade top>
           <SectionTitle
-            title="আমাদের বৈশিষ্ট্য সমূহ"
-            description=" ওয়েব ব্রাউজার ব্যবহার করে শিক্ষার্থীরা প্রত্যন্ত অবস্থান থেকে পরীক্ষা-নিরীক্ষা করতে পারে এবং এই ইন্টারেক্টিভ প্রযুক্তিগুলি শিক্ষার্থীদের অভিনব ও আনন্দায়ক উপায়ে বিজ্ঞান শেখার সম্ভাবনা তৈরী করে।"
+            title="实验室特色"
+            description="任何时间，任何地点开心做实验；互动技术让科学学习更生动有趣。"
             space="mb-12"
           />
         </Fade>
@@ -44,12 +44,11 @@ function Features() {
               <div className="text-center px-5 py-8">
                 <img className="mx-auto" src={FeaturesImage1} alt="img" />
                 <h4 className="font-bold text-dark-blue text-xl mt-10">
-                  সম্পূর্ণ ফ্রীতে ভিডিও ও এনিমেশন দেখে শেখা
+                  免费观看视频与动画学科学
                 </h4>
                 <p className="mt-4 text-gray-800">
-                  অনুশীলনে রয়েছে ৫০০টিরও বেশি ভিডিও ও অনিমেশিন টিউটোরিয়াল। যার
-                  মধ্যে রয়েছে একাডেমিক (প্রথম শ্রেণি থেকে দ্বাদশ শ্রেণি) বিজ্ঞান
-                  শিক্ষা, সফটওয়্যার ও প্রফেশনাল স্কিলস্।
+                  平台提供 500+ 视频与动画教程，涵盖初一到高三科学课程、
+                  软件技能与专业拓展内容。
                 </p>
               </div>
             </Card>
@@ -60,12 +59,11 @@ function Features() {
               <div className="text-center px-5 py-8 xl:mt-24">
                 <img className="mx-auto" src={FeaturesImage2} alt="img" />
                 <h4 className="font-bold text-dark-blue text-xl mt-10">
-                  সিমুলেশনের মাধ্যমে নিজেকে যাচাই করার সুযোগ
+                  仿真实验，随时检验学习成果
                 </h4>
                 <p className="mt-4 text-gray-800">
-                  এটি ব্যবহারকারীদের স্বতন্ত্রভাবে পরীক্ষা-নিরীক্ষা করার এবং
-                  প্রয়োজনে একাধিকবার পুনরাবৃত্তি করার এবং উপাত্ত্ব সংরক্ষণের ও
-                  লেখচিত্র দেখতে পারে।
+                  支持独立完成实验、多次重复操作，
+                  并可保存数据、查看图表，巩固知识点。
                 </p>
               </div>
             </Card>
@@ -76,12 +74,11 @@ function Features() {
               <div className="text-center px-5 py-8">
                 <img className="mx-auto" src={FeaturesImage3} alt="img" />
                 <h4 className="font-bold text-dark-blue text-xl mt-10">
-                  শিক্ষকদের দ্বারা কার্যকারিতা মূল্যায়নের সুযোগ
+                  教师可评估学生实验表现
                 </h4>
                 <p className="mt-4 text-gray-800">
-                  এই সিস্টেমটি বিজ্ঞান শিক্ষকদের পরীক্ষাগার কার্যভার তৈরী,
-                  নির্ধারণ, সংরক্ষণ, উপস্থাপন এবং তাদের শিক্ষার্থীর সমস্ত কার্য
-                  সম্পাদন দেখতে পারে ও মূল্যায়নের অনুমতি দেয়।
+                  支持教师创建、布置、保存实验任务，查看学生完成情况，
+                  并进行科学评价与反馈。
                 </p>
               </div>
             </Card>
@@ -92,12 +89,11 @@ function Features() {
               <div className="text-center mb-24 lg:mb-16 px-5 py-8 xl:mt-24">
                 <img className="mx-auto" src={FeaturesImage4} alt="img" />
                 <h4 className="font-bold text-dark-blue text-xl mt-10">
-                  ই-লার্নিং বিজ্ঞান কমিউনিটি প্লাটফর্মে অভিজ্ঞতা নেয়া
+                  科学学习社区，交流互助
                 </h4>
                 <p className="mt-4 text-gray-800">
-                  যেখানে শিক্ষার্থীরা তাদের প্রশ্নগুলি বা সন্দেহ জিজ্ঞাসা করতে
-                  পারে বা তাদের অভিজ্ঞতা ভাগ করে নিতে পারে, শিক্ষক বা বিশেষজ্ঞরা
-                  তাদের প্রশ্নের উত্তর দিতে ও সাহায্য করতে পারেন।
+                  学生可提问、分享经验，教师与专家在线答疑，
+                  打造互动式科学学习社区。
                 </p>
               </div>
             </Card>

@@ -2,7 +2,7 @@ import { LinearProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
@@ -86,7 +86,7 @@ const WorkshopPost = () => {
                   time: time,
                   imgUrl: url,
                   creatorEmail: auth.user.email,
-                  createAt: moment().locale('bn-bd').format('LLL'),
+                  createAt: moment().locale('zh-cn').format('LLL'),
                 });
 
                 setProgress(0);
@@ -102,10 +102,10 @@ const WorkshopPost = () => {
           }
         );
       } else {
-        toast.error('অনুগ্রহ করে একটি ছবি নির্বাচন করুন');
+        toast.error('请选择一张图片');
       }
     } else {
-      toast.error('অনুগ্রহ করে সব ক্ষেত্র গুলো পূরণ করুন');
+      toast.error('请填写所有必填项');
     }
   }
 
@@ -113,7 +113,7 @@ const WorkshopPost = () => {
     <div className="image__upload font-body">
       <div className="input__holder border border-gray-200 shadow-4xl">
         <p className="text-base font-body font-semibold tracking-wider text-brand-900">
-          নতুন ওয়ার্কশপ পোস্ট করুন
+          发布新工作坊
         </p>
 
         {showProgressBar && (
@@ -129,7 +129,7 @@ const WorkshopPost = () => {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           id="standard-basic"
-          label="ওয়ার্কশপের নাম লিখুন"
+          label="工作坊名称"
         />
         <TextField
           className="caption__upload"
@@ -138,14 +138,14 @@ const WorkshopPost = () => {
           multiline
           rows={3}
           id="standard-basic"
-          label="ওয়ার্কশপ সম্পর্কে সংক্ষিপ্ত বিবরণ লিখুন"
+          label="工作坊简介"
         />
         <TextField
           className="caption__upload"
           onChange={(e) => setLink(e.target.value)}
           value={link}
           id="standard-basic"
-          label="ওয়ার্কশপের লিংক দিন "
+          label="工作坊链接"
         />
         <div className="flex flex-row items-center w-full mb-4">
           <div className="w-1/2 mx-4">
@@ -154,7 +154,7 @@ const WorkshopPost = () => {
               onChange={(e) => setDate(e.target.value)}
               value={date}
               id="standard-basic"
-              label="ওয়ার্কশপের তারিখ লিখুন"
+              label="工作坊日期"
             />
           </div>
           <div className="w-1/2 mx-4">
@@ -163,7 +163,7 @@ const WorkshopPost = () => {
               onChange={(e) => setTime(e.target.value)}
               value={time}
               id="standard-basic"
-              label="ওয়ার্কশপের সময় দিন"
+              label="工作坊时间"
             />
           </div>
         </div>
@@ -200,7 +200,7 @@ const WorkshopPost = () => {
                   htmlFor="image-cover"
                   className="relative cursor-pointer rounded-md font-body font-semibold tracking-wider text-brand-900 hover:text-blue-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
                 >
-                  <span>ছবি আপলোড করুন </span>
+                  <span>上传图片 </span>
                   <input
                     onChange={fileUpload}
                     type="file"
@@ -210,11 +210,11 @@ const WorkshopPost = () => {
                   />
                 </label>
                 <p className="pl-1 font-semibold tracking-wider font-body">
-                  অথবা এখানে টেনে আনুন
+                  或拖拽到此处
                 </p>
               </div>
               <p className="text-xs text-gray-600 tracking-wider font-body">
-                শুধুমাত্র ইমেজ ফাইল সমর্থন করবে
+                仅支持图片格式
               </p>
             </div>
           </label>
@@ -226,7 +226,7 @@ const WorkshopPost = () => {
           variant="contained"
           color="primary"
         >
-          ওয়ার্কশপ পোস্ট করুন
+          发布工作坊
         </Button>
       </div>
     </div>

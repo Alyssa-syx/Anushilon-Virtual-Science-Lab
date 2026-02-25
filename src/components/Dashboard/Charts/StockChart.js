@@ -8,7 +8,7 @@ const buildData = ({ chartData }) => ({
   labels: chartData.labels,
   datasets: [
     {
-      label: " মিটার ব্রিজ ব্যবহার করে কোন তারের আপেক্ষিক রোধ নির্ণয়।",
+      label: "用米桥法测定导线相对电阻",
       backgroundColor: "rgba(255, 255, 255, 0.1)",
       borderColor: "rgba(255, 255, 255, 1)",
       pointBackgroundColor: "rgba(255, 255, 255, 1)",
@@ -110,7 +110,7 @@ const StockChart = ({ info }) => {
             <div className="flex w-full text-xs leading-loose">
               <div className="flex w-6/12">
                 <div className="flex-1 pr-3 text-left font-semibold">
-                  তারের রোধ, p
+                  导线电阻 p
                 </div>
                 <div className="flex-1 px-5 text-right">
                   {info.price.open.toFixed(3)} Ω
@@ -118,7 +118,7 @@ const StockChart = ({ info }) => {
               </div>
               <div className="flex w-6/12">
                 <div className="flex-1 px-3 text-left font-semibold">
-                  নির্দিষ্ট রোধ, X'
+                  电阻率 X'
                 </div>
                 <div className="flex-1 pl-3 text-right">
                   {formatter(info.price.cap)} Ω
@@ -128,7 +128,7 @@ const StockChart = ({ info }) => {
             <div className="flex w-full text-xs leading-loose">
               <div className="flex w-6/12">
                 <div className="flex-1 pr-3 text-left font-semibold">
-                  তারের দৈর্ঘ্য, L
+                  导线长度 L
                 </div>
                 <div className="px-5 text-right">
                   {info.price.high.toFixed(3)} cm
@@ -136,7 +136,7 @@ const StockChart = ({ info }) => {
               </div>
               <div className="flex w-6/12">
                 <div className="flex-1 px-3 text-left font-semibold">
-                  তারের ব্যাসার্ধ, r
+                  导线半径 r
                 </div>
                 <div className="pl-3 text-right">
                   {info.price.ratio.toFixed(2)} mm
@@ -146,7 +146,7 @@ const StockChart = ({ info }) => {
             <div className="flex w-full text-xs leading-loose">
               <div className="flex w-6/12">
                 <div className="flex-1 pr-3 text-left font-semibold">
-                  গড় রোধ, X
+                  平均电阻 X
                 </div>
                 <div className="px-5 text-right">
                   {info.price.low.toFixed(3)} Ω
@@ -154,7 +154,7 @@ const StockChart = ({ info }) => {
               </div>
               <div className="flex w-6/12">
                 <div className="flex-1 px-3 text-left font-semibold">
-                  স্ক্রু গেজের গণনা (LC)
+                  螺旋测微器刻度 (LC)
                 </div>
                 <div className="pl-3 text-right">
                   {`${info.price.dividend}`} mm

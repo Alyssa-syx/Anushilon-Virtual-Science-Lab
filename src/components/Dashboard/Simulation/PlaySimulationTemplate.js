@@ -29,7 +29,7 @@ const PlaySimulationTemplate = ({ videoURL }) => {
             className="w-96 mx-auto"
           />
           <p className="text-2xl py-8 font-body font-medium text-center">
-            অনুগ্রহ করে কিছুক্ষণ অপেক্ষা করুন
+            加载中，请稍候
           </p>
         </div>
       ) : (
@@ -51,7 +51,7 @@ const PlaySimulationTemplate = ({ videoURL }) => {
               rel="noopener noreferrer"
               className="font-semibold text-brand-900 text-right pt-4 text-sm sm:text-base tracking-wider"
             >
-              সোর্স
+              来源
             </a>
           </div>
         </>

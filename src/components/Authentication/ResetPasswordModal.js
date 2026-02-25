@@ -29,7 +29,7 @@ const ResetPasswordModal = () => {
 
   const handleStrongPassword = () => {
     toast(
-      'পাসওয়ার্ডটি কমপক্ষে ৮ টি অক্ষরের দীর্ঘ হতে হবে এবং কমপক্ষে একটি ছোট হাতের অক্ষর, একটি বড় হাতের অক্ষর, একটি নম্বর এবং একটি চিহ্ন থাকতে হবে!',
+      '密码至少 8 位，需包含大小写字母、数字和特殊字符！',
       {
         icon: '🙏',
       }
@@ -41,7 +41,7 @@ const ResetPasswordModal = () => {
     password1: '',
     password2: '',
     token: jwtToken,
-    textChange: 'জমা দিন',
+    textChange: '提交',
   });
 
   const { password1, password2, textChange, token } = formData;
@@ -56,8 +56,8 @@ const ResetPasswordModal = () => {
 
     if (password1 && password2) {
       if (password1 === password2) {
-        const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-        setFormData({ ...formData, textChange: 'জমা দেওয়া হচ্ছে' });
+        const loading = toast.loading('请稍候...⏳');
+        setFormData({ ...formData, textChange: '提交中' });
         axios
           .put(`${process.env.REACT_APP_API_URL}/resetpassword`, {
             newPassword: password1,
@@ -68,7 +68,7 @@ const ResetPasswordModal = () => {
               ...formData,
               password1: '',
               password2: '',
-              textChange: 'জমা দেওয়া হয়েছে',
+              textChange: '已提交',
             });
             toast.dismiss(loading);
             toast.success(res.data.message);
@@ -78,16 +78,16 @@ const ResetPasswordModal = () => {
               ...formData,
               password1: '',
               password2: '',
-              textChange: 'জমা দিন',
+              textChange: '提交',
             });
             toast.dismiss(loading);
             toast.error(err.message);
           });
       } else {
-        toast.error('পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨');
+        toast.error('两次密码不一致！🤨');
       }
     } else {
-      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
+      toast.error('请填写所有必填项！😒');
     }
   };
 
@@ -98,7 +98,7 @@ const ResetPasswordModal = () => {
           duration: 5000,
           style: {
             minWidth: `${notificationWidth}`,
-            fontFamily: 'Hind Siliguri',
+            fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
           },
         }}
       />
@@ -150,7 +150,7 @@ const ResetPasswordModal = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   <h1 className="-mt-4 text-base md:text-xl lg:text-2xl font-body text-gray-900 font-semibold">
-                    আপনার নতুন পাসওয়ার্ড সেট করুন
+                    设置新密码
                   </h1>
 
                   <form
@@ -163,13 +163,13 @@ const ResetPasswordModal = () => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="loggingPassword"
                         >
-                          পাসওয়ার্ড
+                          密码
                         </label>
                         <span
                           className="text-sm text-gray-700 cursor-pointer hover:text-deep-purple-accent-700 tracking-wide"
                           onClick={handleStrongPassword}
                         >
-                          শক্তিশালী পাসওয়ার্ড ব্যবহার করুন
+                          使用强密码
                         </span>
                       </div>
                       <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -184,7 +184,7 @@ const ResetPasswordModal = () => {
                           name="password"
                           type="password"
                           className="login-input"
-                          placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
+                          placeholder="请输入新密码"
                           onChange={handleChange('password1')}
                           value={password1}
                         />
@@ -197,7 +197,7 @@ const ResetPasswordModal = () => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SignInPasswordAgain"
                         >
-                          পাসওয়ার্ড যাচাই
+                          确认密码
                         </label>
                       </div>
                       <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -212,7 +212,7 @@ const ResetPasswordModal = () => {
                           name="password"
                           type="password"
                           className="login-input"
-                          placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
+                          placeholder="请再次输入密码"
                           onChange={handleChange('password2')}
                           value={password2}
                         />

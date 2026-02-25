@@ -1,120 +1,62 @@
-# 📺 Anushilon-Virtual-Science-Lab
+# 🧪 AI 科学实验室 (Virtual Science Lab)
 
-ANUSIHLON is based on the idea that lab experiments can be taught using the internet, more efficiently and less expensively. The online lab is made for students with no access to physical labs or where equipment is not available owing to being rare or costly.
-
----
-
-## 🚀 Important Links
-
-- [Live Website](https://anushilon-bd.web.app/)
-- [Client Repository](https://github.com/PriontoAbdullah/Anushilon-Client)
-- [Server Repository](https://github.com/PriontoAbdullah/Anushilon-Server)
-- [Simulation Repository](https://github.com/PriontoAbdullah/Anushilon-Simulations)
-- [Project Proposal](https://docs.google.com/document/d/1dRNe0lboYRz5FtkDCwzMn4U7d8dcPxRaE5bc0S-pFKE/edit?usp=sharing)
-- [Project Presentation](https://docs.google.com/presentation/d/1ZZl3t_hAsnq53eLVLowDTmgE9oMpwY1AZWzPglrltes/edit?usp=sharing)
-- [Project Report](https://docs.google.com/document/d/1JbwkoL1kT-UO1xlBIvYmuX9_aLhJyEYbSALFZM2MU14/edit?usp=sharing)
+> **“口袋里的 AI 科学实验室”** —— 无论是在家中的书桌前，还是在回家的路上，只要打开设备，你的专属 AI 实验室就立刻就位，随时陪你把奇思妙想变成现实。
 
 ---
 
-## 💡 Motivation
+## 🚀 项目概览 (Overview)
 
-Virtual labs are easy to set up, use and maintain, with notable reductions in cost and time. Experiments can also be repeated multiple times. This virtual lab has to be adopted in schools and colleges to make their students think out of the box.
+**AI 科学实验室** 是一个具有前瞻性的教育科技项目，致力于通过虚拟仿真技术与人工智能大模型（LLM）的深度融合，打破传统物理实验室在时间、空间、设备昂贵及安全隐患上的局限。
 
----
-
-## 📦 Problem Statement
-
-These are the problems I'm trying to solve. In our country, students are in the laboratory. They focus on writing test cases on their notes because they need to prepare a lab report of all experiments for their board practical examinations. Students do not focus on what they should learn and what scopes they can use in their experiments.
-
-The major problem in rural areas is students cannot conduct experiments in village schools and colleges due to a lack of laboratory equipment and less funding.
-
-In this pandemic situation, schools and colleges are off for over a year. Students study online with the help of e-learning platforms but cannot conduct lab experiments because online, there is no possibility to explore science lab experiments.
-
-So the only solution to these kinds of problems is Virtual labs.
+结合前沿的 AI 辅助学习与科研 Agent 理念，我们不仅提供高度还原的交互式实验环境，更在底层接入了强大的 AI 引擎，让科学探索变得更低成本、更高效率、且触手可及。在这里，我们鼓励学生跳出课本，进行个性化的试错与创新。
 
 ---
 
-## 💎 What and How I am trying to solve this problem
+## 🧠 AI 核心技术与赋能场景 (AI Integration)
 
-1. The main objective of developing a virtual science lab that supports flexible online, collaborative science experiments learning environment.
+区别于传统的“点读机式”固定程序模拟，本平台通过引入 AI 技术，实现了真正的“千人千面”与智能化探索：
 
-2. Where schools and college students can learn science experiments by simulation.
-
-3. The experiments of Physics, Chemistry, and Biology subjects of class 9 - 12 in NCTB curriculum.
-
-4. Also provide theory, procedure, pictures, video, animation, simulation, observation table, resources of every experiment.
-
-5. Create a lab room where teachers can assign experiments, evaluation, and grading observations and see all the students’ performance.
-
-6. Also, students enroll in that lab room and submit that experiment observation. Students and Teachers both create posts and comments in the lab room.
-
-7. Create a science e-learning community platform where students can ask their queries or doubts or share their experiences. Teachers or experts can answer their questions.
-
-8. And create a monitoring panel for institutions to monitor their student’s performance and teachers’ activity. Also, they can post a notice and arrange any workshops.
+1. **🧚‍♂️ 专属 AI 探索精灵 (AI Agent)**
+   - **核心技术**：基于大语言模型 (LLM) 与知识库检索增强生成 (RAG) 技术构建的垂类科学助教。
+   - **应用场景**：24 小时在线伴学。当学生在滴加试剂或连接电路卡壳时，AI 精灵不会直接给出答案，而是采用苏格拉底式提问，根据学生当前的操作步骤进行上下文引导。
+2. **👁️ 智能错误归因与图表分析 (Vision & Data Analysis)**
+   - **核心技术**：智能数据挖掘与自然语言数据分析 (Text-to-SQL / Code Interpreter)。
+   - **应用场景**：学生提交实验数据后，AI 会自动清洗数据、生成趋势图表，并智能诊断出“误差来源”（如：读取量筒时视线未平齐），提供个性化的实验改进报告。
+3. **🧬 开放式实验预测 (Generative AI for Science)**
+   - **核心技术**：轻量级科学预测模型接口对接。
+   - **应用场景**：在化学或物理的高阶实验中，允许学生设定超出课本常规参数的变量（如极端温度、特殊催化剂），AI 模型将演算并生成可能的实验现象，打破固定脚本的限制。
 
 ---
 
-## 🗃️ How does this project impacts our society:
+## ✨ 核心特性 (Key Features)
 
-- It allows learners to learn through exciting, motivating activities to discover and solve problems systematically.
-
-- Hands-on lab exercises in a flexible learning context and real-world problem-solving.
-
-- It is helping to calculate their experiment results and record their experiment data in observation tables and generate results accuracy with graph view.
-
-- Students are capable of experimenting as much as possible without barriers to tools, time, and place.
+* **📱 多端设备无缝连通**：全面支持手机、平板、电脑端响应式访问，随时随地开启实验。
+* **🚀 全学科海量仿真实验**：覆盖物理、化学、生物的核心实验场景，提供逼真的交互反馈。
+* **📊 智能数据化看板**：自动记录实验数据、生成观察表格并绘制图表，将精力还给思考本身。
+* **🏫 师生协作数字空间**：支持教师布置实验任务、跟进学生进度，并在系统中进行学术交流。
 
 ---
 
-## 🖼️ My contributions and the Project outcome.
+## 🛠 现代化技术栈 (Tech Stack)
 
-- Utilizing a virtual lab provides students with the chance to develop critical thinking, innovation, and team working skills, all of which are highly valued in today's job market.
+本项目采用现代化的前后端分离架构，并独立封装了 AI 微服务层，确保系统的高性能与高可扩展性：
 
-- Saving time and focusing more on their experiments and individualized practice in all areas of experimentation.
-
-- The ability to perform, record, and learn experiments - anywhere, anytime.
-
-- Helping them to understand the opportunities & scopes of what they can do more with their experiments.
-
----
-
-## 🛠 Technology Stack
-
-- Language: JavaScript
-- Frontend Library: React.JS
-- State Management: Redux.JS
-- UI Component: Tailwind CSS
-- Web Server: Node.JS
-- Backend Framework: Express.JS
-- Database: MongoDB, Mongoose (ODM)
-- CI/CD: Github, Heroku, Firebase.
+- **🤖 AI 引擎与算法 (AI & Algorithms)**
+  - Python / FastAPI (AI 微服务后端)
+  - LangChain / LlamaIndex (大模型编排与 RAG 知识库)
+  - OpenAI API / 国产开源大模型 (提供基础推理能力)
+- **💻 前端架构 (Frontend)**
+  - JavaScript / React.JS / Redux.JS
+  - Tailwind CSS / Material-UI
+  - Three.js / React Spring (3D 与交互动画)
+- **⚙️ 后端与数据库 (Backend & DB)**
+  - Node.JS / Express.JS (业务逻辑层)
+  - MongoDB / Mongoose (ODM)
+- **☁️ 部署与运维 (Deployment)**
+  - Firebase / Vercel / GitHub Actions
 
 ---
 
-### 📱 User Interface
+## 📑 许可协议 (License)
 
-![Anushilon-UI](https://i.ibb.co/rc8wNNF/Oze0RSF.png)
-
----
-
-## 📚 Reference
-
-[1] K. Aljuhani, M. Sonbul, M. Althabiti and M. Meccawy, "Creating a Virtual Science Lab (VSL): the adoption of virtual labs in Saudi schools", Smart Learning Environments, vol. 5, no. 1, 2018.
-Available: https://slejournal.springeropen.com/articles/10.1186/s40561-018-0067-9. [Accessed 19 May 2021].
-
-[2] E. Aziz, S. Esche and C. Chassapis, "An Architecture For Virtual Laboratory Experimentation", 2006 Annual Conference & Exposition, Chicago, Illinois, Peer.asee.org, 10.18260/1-2--220, 2006.
-Available: https://peer.asee.org/an-architecture-for-virtual-laboratory-experimentation. [Accessed: 25 May 2021].
-
-[3] M. Zhang and Y. Li, "Students’ Continuance Intention to Experience Virtual and Remote Labs in Engineering and Scientific Education", International Journal of Emerging Technologies in Learning (iJET), vol. 14, no. 17, p. 4, 2019. Available: https://www.researchgate.net/publication/335847040_Students'_Continuance_Intention_to_Experience_Virt
-ual_and_Remote_Labs_in_Engineering_and_Scientific_Education. [Accessed 02 June 2021].
-
-[4] S. Amirkhani, A. Nahvi. Design and Implementation of an Interactive Virtual Control Laboratory Using Haptic Interface for Undergraduate Engineering Students. Computer Applications in Engineering Education vol. 24, pp. 508–518, 2016. Available: https://dl.acm.org/doi/10.1002/cae.21727 [Accessed 02 June 2021].
-
-[5] Geoffroy, F., Zeramdini, K., Nguyen, A. V., Rekik, Y., and Piguet, Y., (2003), “The Cockpit: An Effective Metaphor for Web-based Experimentation in Engineering Education”, Int. J. Engng. Ed., Vol. 19, pp. 389-397.
-Available: https://www.ijee.ie/articles/Vol19-3/IJEE1414.pdf. [Accessed 07 June 2021].
-
----
-
-## 📑 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+本项目基于 [MIT License](https://choosealicense.com/licenses/mit/) 开源。

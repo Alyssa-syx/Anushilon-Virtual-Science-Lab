@@ -32,7 +32,7 @@ const WorkshopCard = ({
             target="_blank"
             rel="noreferrer"
           >
-            ওয়ার্কশপে জয়েন করুন
+            加入工作坊
             <svg
               className="w-4 h-4 ml-2"
               viewBox="0 0 24 24"

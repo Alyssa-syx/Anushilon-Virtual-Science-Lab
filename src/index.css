@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 @import url('https://cdn.rawgit.com/sh4hids/bangla-web-fonts/charukola-reguler-unicode/stylesheet.css');
 @import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
 
@@ -9,6 +11,29 @@
 
 .deep-button {
   @apply inline-flex items-center justify-center h-14 px-10 md:h-16 md:px-10 font-bold text-sm md:text-xl tracking-wider text-gray-200 transition duration-200 rounded shadow-md hover:text-deep-purple-900 bg-brand-900 hover:bg-deep-purple-100 focus:shadow-outline focus:outline-none cursor-pointer;
+}
+
+/* Hero 区域：童趣风中文主视觉 */
+.hero-title {
+  font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 235, 150, 0.15);
+  letter-spacing: 0.02em;
+}
+.hero-subtitle {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+.hero-tag {
+  box-shadow: 0 4px 14px rgba(255, 213, 79, 0.25);
+}
+.hero-cta {
+  font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  @apply inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-semibold tracking-wide rounded-full transition-all duration-300 cursor-pointer;
+  @apply bg-amber-400 text-brand-900 shadow-lg hover:bg-amber-300 hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-transparent;
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+}
+.hero-cta:hover {
+  box-shadow: 0 8px 28px rgba(251, 191, 36, 0.5);
 }
 
 .nav-link-general {

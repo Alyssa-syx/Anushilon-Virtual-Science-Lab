@@ -4,32 +4,32 @@ import Transition from "../../../utils/Transition";
 
 const recentSearch = [
   {
-    name: "গতি - নিউটনের দ্বিতীয় সূত্র",
+    name: "运动 - 牛顿第二定律",
     href: "#0",
   },
   {
-    name: "উত্তল লেন্স ব্যবহার করে প্রতিবিম্ব সৃষ্টি এবং প্রদর্শন",
+    name: "用凸透镜形成并观察像",
     href: "#0",
   },
   {
-    name: "তরঙ্গ - সুরশলাকার কম্পাংক",
+    name: "波动 - 音叉频率",
     href: "#0",
   },
   {
-    name: "চলতড়িৎ - ওহমের সূত্র",
+    name: "电流与电路 - 欧姆定律",
     href: "#0",
   },
 ];
 
 const recentPage = [
   {
-    title: "ল্যাব রুম",
-    name: "অ্যাসাইনমেন্ট /.. / হুইটস্টোন ব্রীজ",
+    title: "实验室",
+    name: "作业 /.. / 惠斯通电桥",
     href: "#0",
   },
   {
-    title: "কমিউনিটি",
-    name: "বিজ্ঞান অন্বেষণ /.. / জ্যোতির্বিজ্ঞান কী",
+    title: "社区",
+    name: "科学探索 /.. / 天文学入门",
     href: "#0",
   },
 ];
@@ -70,7 +70,7 @@ function SearchBar() {
         }}
         aria-controls="search-modal"
       >
-        <span className="sr-only font-body">সার্চ</span>
+        <span className="sr-only font-body">搜索</span>
         <svg
           className="w-4 h-4"
           viewBox="0 0 16 16"
@@ -120,13 +120,13 @@ function SearchBar() {
           <form className="border-b border-gray-200">
             <div className="relative">
               <label htmlFor="modal-search" className="sr-only font-body">
-                সার্চ
+                搜索
               </label>
               <input
                 id="modal-search"
                 className="w-full border-0 focus:ring-transparent placeholder-gray-500 appearance-none py-3 pl-10 pr-4 outline-none focus:outline-none"
                 type="search"
-                placeholder="অনুসন্ধান করুন…"
+                placeholder="搜索…"
                 ref={searchInput}
               />
               <button
@@ -153,7 +153,7 @@ function SearchBar() {
             {/* Recent searches */}
             <div className="mb-3 last:mb-0">
               <div className="text-sm font-body font-medium text-gray-500 uppercase px-2 mb-2 tracking-wide">
-                সাম্প্রতিক সার্চগুলি
+                最近搜索
               </div>
               <ul className="text-sm">
                 {recentSearch &&
@@ -179,7 +179,7 @@ function SearchBar() {
             {/* Recent pages */}
             <div className="mb-3 last:mb-0">
               <div className="text-sm font-body font-medium text-gray-500 uppercase px-2 mb-2 tracking-wide">
-                সাম্প্রতিক পৃষ্ঠাগুলি
+                最近访问
               </div>
               <ul className="text-sm">
                 {recentPage &&

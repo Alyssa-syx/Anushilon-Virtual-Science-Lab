@@ -12,78 +12,66 @@ const TheoryTemplate = () => {
     <div className="flex flex-wrap text-lg font-body text-gray-900 leading-relaxed tracking-wide px-4 py-5 ">
       {/* Content 1 */}
       <div className="mb-2 ">
-        <h2 className="font-semibold"> পরীক্ষণের নাম: </h2>
-        <p> মিটার ব্রিজ ব্যবহার করে কোন তারের আপেক্ষিক রোধ নির্ণয়। </p>
+        <h2 className="font-semibold"> 实验名称：</h2>
+        <p> 用米桥法测定导线的相对电阻。</p>
       </div>
 
       <div className="mb-2">
-        <h2 className="font-semibold"> পরীক্ষণের উদ্দেশ্য: </h2>
+        <h2 className="font-semibold"> 实验目的：</h2>
         <p>
-          একটি মিটার ব্রিজ ব্যবহার করে প্রদত্ত তারের প্রতিরোধের সন্ধান করতে এবং
-          তার উপাদানগুলির নির্দিষ্ট প্রতিরোধের নির্ধারণ করতে হবে।
+          用米桥测定给定导线的电阻，并确定导线材料的电阻率。
         </p>
       </div>
       {/* Content 2 */}
       <div className="mb-4">
-        <h2 className="font-semibold"> মূলতত্ত্ব: </h2>
-        <p> হুইটস্টোন এর নীতি অনুসারে </p>
+        <h2 className="font-semibold"> 基本原理：</h2>
+        <p> 惠斯通电桥原理</p>
         <img src={Image01} alt="simulation-theory" className="py-1" />
         <p>
-          মিটার ব্রিজটি হুইটস্টনের নীতির অধীনে পরিচালিত হয়। এখানে, চারটি
-          প্রতিরোধক P, Q, R, এবং S নেটওয়ার্ক ABCD গঠনের জন্য সংযুক্ত রয়েছে।
-          টার্মিনাল A এবং C একটি ব্যাটারির সাথে সংযুক্ত এবং C এবং D
-          টার্মিনালগুলি যথাক্রমে K1 এবং K2 কীগুলির মাধ্যমে একটি গ্যালভানোমিটারের
-          সাথে সংযুক্ত থাকে। ভারসাম্যহীন অবস্থায় গ্যালভানোমিটারের কোনও
-          প্রতিচ্ছবি নেই। অতঃপর,
+          米桥基于惠斯通电桥原理工作。四个电阻 P、Q、R、S 连接成 ABCD 网络。
+          端子 A 和 C 与电池相连，C 和 D 端子通过开关 K1、K2 与检流计相连。
+          平衡时检流计无偏转。
         </p>
         <img src={Image02} alt="simulation-theory" className="py-2 ml-2" />
       </div>
       {/* Content 3 */}
       <div className="mb-2 mt-2">
-        <h2 className="font-semibold"> মিটার ব্রিজ মেশিন: </h2>
+        <h2 className="font-semibold"> 米桥结构：</h2>
         <p>
-          স্লাইড ওয়্যার ব্রিজ নামে পরিচিত মিটার ব্রিজটি কাঠের ব্লকের উপর স্থিত
-          ইউনিফর্ম ক্রস-বিভাগীয় অঞ্চলের এক মিটার দীর্ঘ তারের সমন্বয়ে গঠিত।
-          একটি স্কেল ব্লকের সাথে সংযুক্ত থাকে। গমের পাথরের ব্রিজটি তৈরি করার
-          জন্য ঘন ধাতব স্ট্রিপগুলি ব্যবহার করে এর উপর দুটি ফাঁক তৈরি হয়।
-          ফাঁকগুলির মধ্যে টার্মিনাল B গ্যালভানোমিটার এবং জকি সংযোগ করতে ব্যবহৃত
-          হয়।
+          米桥又称滑线电桥，由固定在木块上、横截面积均匀的一米长电阻丝组成，
+          附有刻度。用厚金属条在桥上形成两个间隙，间隙间端子 B 用于连接检流计和滑键。
         </p>
         <div className="flex flex-wrap my-5">
           <img src={Image03} alt="simulation-theory" className="py-1 mr-5" />
           <img src={Image04} alt="simulation-theory" className="py-2" />
         </div>
         <p>
-          ফাঁক S তে একটি প্রতিরোধের তারের প্রবর্তন করা হয় এবং প্রতিরোধের
-          বাক্সটি ফাঁক R এ থাকে। যখন জকি তারের AC উপরের দিকে স্লাইড হয়, এটি
-          ভারসাম্য বিন্দুতে নাল পয়েন্ট দেখায়।
+          电阻丝置于间隙 S，电阻箱置于间隙 R。当滑键沿 AC 滑动时，在平衡点处检流计示零。
         </p>
       </div>
       {/* Content 4 */}
       <div className="mb-4">
-        <p className="my-2">দৈর্ঘ্য যদি AB হয়, তবে BC দৈর্ঘ্য (100-l) হয়।</p>
-        <p>তারপরে, হুইটস্টনের নীতি অনুসারে:</p>
+        <p className="my-2">若 AB 长度为 l，则 BC 长度为 (100-l)。</p>
+        <p>根据惠斯通电桥原理：</p>
         <img src={Image05} alt="simulation-theory" className="py-2" />
-        <p className="mt-2">এখন, অজানা প্রতিরোধ হিসাবে গণনা করা যেতে পারে,</p>
+        <p className="mt-2">未知电阻可按下式计算：</p>
         <img src={Image06} alt="simulation-theory" className="py-2" />
         <p className="mt-2">
-          তারের উপাদানের নির্দিষ্ট প্রতিরোধ বা প্রতিরোধের পরে সম্পর্কটি ব্যবহার
-          করে গণনা করা যেতে পারে,
+          导线材料的电阻率可用下式求得：
         </p>
         <img src={Image07} alt="simulation-theory" className="py-2" />
-        <p className="mt-2">যেখানে L তারের দৈর্ঘ্য হবে এবং R ব্যাসার্ধ হবে। </p>
+        <p className="mt-2">其中 L 为导线长度，R 为半径。</p>
       </div>
       {/* Content 5 */}
       <div className="pb-5">
-        <h2 className="font-semibold mb-1"> শেখার ফলাফল: </h2>
+        <h2 className="font-semibold mb-1"> 学习目标：</h2>
         <ul className="list-inside leading-loose list-disc">
           <li>
-            শিক্ষার্থীরা হুইটস্টোন ব্রিজ এবং হুইটস্টোন এর নীতিটি বুঝতে পারবে।
+            理解惠斯通电桥及其原理。
           </li>
-          <li>শিক্ষার্থীরা হুইটস্টোন এর নীতি যাচাই করতে পারবে।</li>
+          <li>能够验证惠斯通电桥原理。</li>
           <li>
-            শিক্ষার্থীরা মিটার ব্রিজ পরীক্ষার মাধ্যমে হুইটসটনের ব্রিজের নীতিটি
-            বুঝতে সক্ষম হবে।
+            通过米桥实验掌握电桥原理的应用。
           </li>
         </ul>
       </div>

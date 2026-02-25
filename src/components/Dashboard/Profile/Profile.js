@@ -72,7 +72,7 @@ const Profile = () => {
         }
       );
     } else {
-      toast.error('অনুগ্রহ করে একটি ছবি নির্বাচন করুন');
+      toast.error('请选择一张图片');
     }
   };
 
@@ -83,7 +83,7 @@ const Profile = () => {
 
     try {
       db.collection('users').doc(userId).update(payload);
-      toast.success('আপনার প্রোফাইল সফলভাবে আপডেট করা হয়েছে');
+      toast.success('个人资料已更新');
     } catch (err) {
       toast.error(err);
     }
@@ -99,11 +99,10 @@ const Profile = () => {
           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-6 sm:gap-x-6">
             <div className="sm:col-span-6">
               <h2 className="text-2xl font-semibold text-brand-900">
-                প্রোফাইল
+                个人中心
               </h2>
               <p className="mt-1 text-sm text-blue-gray-500">
-                এই তথ্যটি সর্বজনীনভাবে প্রদর্শিত হবে তাই আপনি কী তথ্য প্রদান
-                করছেন তা সতর্ক থাকুন।
+                此信息将公开显示，请谨慎填写。
               </p>
             </div>
 
@@ -112,7 +111,7 @@ const Profile = () => {
                 htmlFor="photo"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                ছবি
+                头像
               </label>
               {showProgressBar && (
                 <LinearProgress
@@ -135,7 +134,7 @@ const Profile = () => {
                       className="relative pointer-events-none"
                     >
                       <span className="text-sm font-semibold text-gray-100 tracking-wide cursor-pointer">
-                        পরিবর্তন করুন
+                        更换
                       </span>
                     </label>
                     <input
@@ -155,19 +154,19 @@ const Profile = () => {
                 htmlFor="displayName"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                পুরো নাম
+                姓名
               </label>
               <input
                 type="text"
                 name="name"
                 id="name"
-                placeholder="আপনার পূর্ণ নাম"
+                placeholder="请输入姓名"
                 defaultValue={user?.name}
                 {...registerProfile('name', {
-                  required: 'নাম দেয়া আবশ্যক',
+                  required: '请输入姓名',
                   minLength: {
                     value: 6,
-                    message: 'নাম ন্যূনতম ২ শব্দ হতে হবে',
+                    message: '姓名至少 2 个字符',
                   },
                 })}
                 className={`mt-2 block w-full border-gray-300 rounded-md shadow-sm text-blue-gray-900 sm:text-sm ${
@@ -187,21 +186,21 @@ const Profile = () => {
                 htmlFor="description"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                আমার সম্পর্কে
+                个人简介
               </label>
               <div className="mt-2">
                 <textarea
                   id="description"
                   name="description"
                   defaultValue={user?.description}
-                  placeholder="আপনার সম্পর্কে কিছু লিখুন ...."
+                  placeholder="写几句关于你的介绍..."
                   {...registerProfile('description')}
                   rows={3}
                   className="block w-full border border-gray-300 rounded-md shadow-sm sm:text-sm text-blue-gray-900 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               <p className="mt-3 text-sm text-blue-gray-500">
-                আপনার প্রোফাইলের জন্য সংক্ষিপ্ত বিবরণ.
+                个人资料的简短介绍。
               </p>
             </div>
 
@@ -210,13 +209,13 @@ const Profile = () => {
                 htmlFor="institution"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                শিক্ষা প্রতিষ্ঠান
+                学校/机构
               </label>
               <input
                 type="text"
                 name="institution"
                 id="institution"
-                placeholder="আপনার শিক্ষা প্রতিষ্ঠান"
+                placeholder="学校或机构名称"
                 {...registerProfile('institution')}
                 defaultValue={user?.institution}
                 className="mt-2 block w-full border-gray-300 rounded-md shadow-sm text-blue-gray-900 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
@@ -227,11 +226,10 @@ const Profile = () => {
           <div className="pt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-6 sm:gap-x-6">
             <div className="sm:col-span-6">
               <h2 className="text-xl font-medium text-blue-gray-900">
-                ব্যক্তিগত তথ্য
+                隐私信息
               </h2>
               <p className="mt-1 text-sm text-blue-gray-500">
-                এই তথ্য ব্যক্তিগত এবং নিরাপদ হবে তাই এটি সম্পর্কে চিন্তা করবেন
-                না.
+                此信息仅你可见，安全保密。
               </p>
             </div>
 
@@ -240,13 +238,13 @@ const Profile = () => {
                 htmlFor="email"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                ইমেল ঠিকানা
+                邮箱
               </label>
               <input
                 type="email"
                 name="email"
                 id="email"
-                placeholder="আপনার ইমেইল"
+                placeholder="邮箱地址"
                 defaultValue={user?.email}
                 disabled
                 className="mt-2 block w-full border-gray-300 rounded-md shadow-sm text-blue-gray-900 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
@@ -258,23 +256,23 @@ const Profile = () => {
                 htmlFor="phone"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                ফোন নম্বর
+                手机号
               </label>
               <input
                 type="text"
                 name="phone"
                 id="phone"
-                placeholder="আপনার ফোন নম্বর"
+                placeholder="手机号码"
                 defaultValue={user?.phone}
                 {...registerProfile('phone', {
-                  required: 'ফোন নম্বর দেয়া আবশ্যক',
+                  required: '请输入手机号',
                   minLength: {
                     value: 11,
-                    message: 'ফোন নম্বর সর্বনিম্ন ১১ সংখ্যা হতে হবে',
+                    message: '手机号至少 11 位',
                   },
                   maxLength: {
                     value: 14,
-                    message: 'ফোন নম্বর সর্বোচ্চ ১৪ সংখ্যা দেয়া যাবে',
+                    message: '手机号最多 14 位',
                   },
                 })}
                 className={`mt-2 block w-full border-gray-300 rounded-md shadow-sm text-blue-gray-900 sm:text-sm ${
@@ -294,19 +292,19 @@ const Profile = () => {
                 htmlFor="address"
                 className="block text-sm sm:text-base font-medium text-blue-gray-900"
               >
-                বর্তমান ঠিকানা
+                地址
               </label>
               <input
                 type="text"
                 name="address"
                 id="address"
-                placeholder="আপনার বর্তমান ঠিকানা"
+                placeholder="当前地址"
                 defaultValue={user?.address}
                 {...registerProfile('address', {
-                  required: 'বর্তমান ঠিকানা দেয়া আবশ্যক',
+                  required: '请输入地址',
                   minLength: {
                     value: 6,
-                    message: 'বর্তমান ঠিকানা ন্যূনতম ২ শব্দ হতে হবে',
+                    message: '地址至少 2 个字符',
                   },
                 })}
                 className={`mt-2 block w-full border-gray-300 rounded-md shadow-sm text-blue-gray-900 sm:text-sm ${
@@ -327,7 +325,7 @@ const Profile = () => {
               type="submit"
               className="ml-3 inline-flex justify-center py-2.5 px-6 border border-transparent shadow-sm text-sm sm:text-base font-semibold rounded-md text-white transition-colors duration-300 bg-brand-900 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
             >
-              হালনাগাদ করুন{' '}
+              保存{' '}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="ml-1 h-6 w-6 text-sm sm:text-base font-medium text-gray-50"

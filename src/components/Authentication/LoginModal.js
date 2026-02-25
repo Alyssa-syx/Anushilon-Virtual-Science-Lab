@@ -1,22 +1,17 @@
 import {
-  faEnvelope,
-  faEye,
-  faEyeSlash,
-  faLock,
+  faMobileAlt,
+  faShieldAlt,
   faUniversity,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { GoogleLogin } from 'react-google-login';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import Slide from 'react-reveal/Slide';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ModalContext } from '../../App';
 import Institution from '../../data/Institution';
-import { authenticate, isAuth } from '../../helpers/auth';
+import { authenticate } from '../../helpers/auth';
 import { GLOBALTYPES } from '../../redux/actions/globalTypes';
 import RegistrationModal from './RegistrationModal';
 
@@ -29,17 +24,16 @@ const LoginModal = () => {
   // initial states
   const [institutionUser, setInstitutionUser] = useState(null);
   const [institutionName, setInstitutionName] = useState(null);
-  const [forgetPassword, setForgetPassword] = useState(false);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [institutionList, setInstitutionList] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const [typePass, setTypePass] = useState(false);
+  const [countdown, setCountdown] = useState(0);
 
   // show notification
   useEffect(() => {
     modalData.newUser &&
       toast(
-        `অনুগ্রহক করে এই মুহূর্তে "স্বতন্ত্র ভাবে নিবন্ধন করে" পুরো এপ্লিকেশনটি ব্যবহার করতে পারবেন! 😊`,
+        `请先「独立注册」以使用完整功能！😊`,
         {
           icon: '🙏',
           position: 'bottom-left',
@@ -90,201 +84,69 @@ const LoginModal = () => {
 
   // login form data states
   const [formData, setFormData] = useState({
-    email: '',
-    password1: '',
-    textChange: 'লগ ইন করুন',
+    phone: '',
+    verificationCode: '',
+    textChange: '验证身份',
   });
-  const { email, password1, textChange } = formData;
-  // login from data handler
+  const { phone, verificationCode, textChange } = formData;
+  // login form data handler
   const handleChange = (text) => (e) => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
-  // redirect for role based user
-  const informParent = (response) => {
-    authenticate(response, () => {
-      // dispatch to auth reducer
-      dispatch({
-        type: GLOBALTYPES.AUTH,
-        payload: {
-          token: response.data.token,
-          user: response.data.user,
-        },
-      });
+  // countdown timer for "获取验证码" button
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
 
-      // set token to localStorage
-      localStorage.setItem('jwtToken', response.data.token);
-
-      // redirect for role based user
-      isAuth() && isAuth().role === 'admin'
-        ? history.push('/admin')
-        : history.push('/');
-      toast.success(
-        `হ্যালো! ${response.data.user.name}, ফিরে আসার জন্য ধন্যবাদ! ❤️`
-      );
-    });
+  // 获取验证码（模拟）
+  const handleGetVerificationCode = () => {
+    if (!phone || phone.length < 11) {
+      toast.error('请输入正确的手机号！');
+      return;
+    }
+    if (countdown > 0) return;
+    setCountdown(60);
+    toast.success('验证码已发送至您的手机');
   };
 
-  // google login handler
-  const sendGoogleToken = (tokenId) => {
-    const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
-        idToken: tokenId,
-      })
-      .then((res) => {
-        toast.dismiss(loading);
-        informParent(res);
-        handleCloseLoginModal();
-      })
-      .catch((err) => {
-        // console.log("GOOGLE SIGNIN ERROR", error.response);
-        toast.dismiss(loading);
-        toast.error(err?.response?.data?.errors);
-      });
-  };
-
-  // facebook login handler
-  const sendFacebookToken = (userID, accessToken) => {
-    const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...');
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/facebooklogin`, {
-        userID,
-        accessToken,
-      })
-      .then((res) => {
-        toast.dismiss(loading);
-        // console.log(res.data);
-        informParent(res);
-        handleCloseLoginModal();
-      })
-      .catch((err) => {
-        toast.dismiss(loading);
-        // console.log("GOOGLE SIGNIN ERROR", error.response);
-        toast.error(err?.response?.data?.errors);
-      });
-  };
-
-  // responses from google & facebook api
-  const responseGoogle = (response) => {
-    // console.log(response);
-    sendGoogleToken(response.tokenId);
-  };
-
-  const responseFacebook = (response) => {
-    // console.log(response);
-    sendFacebookToken(response.userID, response.accessToken);
-  };
-
-  // manual login handler
+  // 模拟登录：手机号+验证码不为空即登录成功
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (email && password1) {
-      const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-      setFormData({ ...formData, textChange: 'লগ ইন হচ্ছে' });
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/login`, {
-          email,
-          password: password1,
-        })
-        .then((res) => {
-          authenticate(res, () => {
-            setFormData({
-              ...formData,
-              email: '',
-              password1: '',
-              textChange: 'লগ ইন হয়েছে',
-            });
+    if (phone && verificationCode) {
+      setFormData({ ...formData, textChange: '验证中' });
 
-            // dispatch to auth reducer
-            dispatch({
-              type: GLOBALTYPES.AUTH,
-              payload: {
-                token: res.data.token,
-                user: res.data.user,
-              },
-            });
+      // 模拟登录成功，构造假 token 和 user
+      const mockToken = `mock_token_${Date.now()}`;
+      const mockUser = {
+        _id: `mock_${Date.now()}`,
+        name: `用户${phone.slice(-4)}`,
+        email: `${phone}@mock.local`,
+        role: 'user',
+      };
+      const mockResponse = { data: { token: mockToken, user: mockUser } };
 
-            // set token to localStorage
-            localStorage.setItem('jwtToken', res.data.token);
-
-            toast.dismiss(loading);
-            // close login modal
-            handleCloseLoginModal();
-            // redirect for role based user
-            isAuth() && isAuth().role === 'admin'
-              ? history.push('/admin')
-              : history.replace(from);
-            toast.success(
-              `হ্যালো! ${res.data.user.name}, ফিরে আসার জন্য ধন্যবাদ! ❤️`
-            );
-          });
-        })
-        .catch((err) => {
-          setFormData({
-            ...formData,
-            email,
-            password1: password1,
-            textChange: 'লগ ইন করুন',
-          });
-          toast.dismiss(loading);
-          toast.error(err?.response?.data?.errors);
+      authenticate(mockResponse, () => {
+        dispatch({
+          type: GLOBALTYPES.AUTH,
+          payload: { token: mockToken, user: mockUser },
         });
-    } else {
-      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
-    }
-  };
-
-  // forget password form data states
-  const [forgetPasswordData, setForgetPasswordData] = useState({
-    forgetEmail: '',
-    forgetTextChange: 'জমা দিন',
-  });
-  const { forgetEmail, forgetTextChange } = forgetPasswordData;
-  // forget password data
-  const handleForgetChange = (text) => (e) => {
-    setForgetPasswordData({ ...forgetPasswordData, [text]: e.target.value });
-  };
-
-  // forget password handler
-  const handleForgetPasswordSubmit = (e) => {
-    e.preventDefault();
-
-    const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
-    if (forgetEmail) {
-      setForgetPasswordData({
-        ...forgetPasswordData,
-        forgetTextChange: 'জমা দেওয়া হচ্ছে',
+        localStorage.setItem('jwtToken', mockToken);
+        setFormData({
+          phone: '',
+          verificationCode: '',
+          textChange: '验证身份',
+        });
+        handleCloseLoginModal();
+        history.replace(from);
+        toast.success(`你好，${mockUser.name}！欢迎回来 ❤️`);
       });
-
-      axios
-        .put(`${process.env.REACT_APP_API_URL}/forgotpassword`, {
-          forgetEmail,
-        })
-        .then((res) => {
-          setForgetPasswordData({
-            ...forgetPasswordData,
-            forgetEmail: '',
-            textChange: 'জমা দেওয়া হয়েছে',
-          });
-          // close login modal
-          setForgetPassword(false);
-          handleCloseLoginModal();
-          toast.dismiss(loading);
-          toast.success(res.data.message);
-        })
-        .catch((err) => {
-          setForgetPasswordData({
-            ...forgetPasswordData,
-            forgetEmail: '',
-            forgetTextChange: 'জমা দিন',
-          });
-          toast.dismiss(loading);
-          toast.error(err?.response?.data?.errors);
-        });
     } else {
-      toast.error('অনুগ্রহপূর্বক তথ্য দিয়ে পূরণ করুন! 😒');
+      toast.error('请填写手机号和验证码！😒');
     }
   };
 
@@ -295,11 +157,7 @@ const LoginModal = () => {
           <div className="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-filter saturate-150 backdrop-blur-sm">
             <div
               className={`relative w-full mt-12 mb-24 sm:mb-4 ${
-                !modalData.newUser
-                  ? !forgetPassword
-                    ? 'lg:mt-8 2xl:mt-10'
-                    : 'lg:mt-18 2xl:mt-20'
-                  : 'lg:mt-4 2xl:mt-6'
+                !modalData.newUser ? 'lg:mt-8 2xl:mt-10' : 'lg:mt-4 2xl:mt-6'
               } flex max-w-sm md:max-w-lg lg:max-w-4xl 2xl:max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl`}
             >
               {/* Left Side Animations */}
@@ -345,237 +203,108 @@ const LoginModal = () => {
                 </button>
 
                 {!modalData.newUser ? (
-                  // Login Form
+                  // Login Form - 手机号 + 验证码
                   <Fragment>
                     {/* LogIn Header */}
                     <div>
                       <h2 className="text-2xl ml-4 mb-2 font-display text-center font-bold text-brand-900">
-                        অনুশীলন
+                        AI虚拟科学实验室
                       </h2>
                       <p className="text-lg font-body text-center text-gray-600 ">
-                        ফিরে আসার জন্য স্বাগতম!
+                        欢迎回来！
                       </p>
                     </div>
 
-                    {!forgetPassword ? (
-                      <Fragment>
-                        {/* Sign In with Google */}
-                        <Slide bottom>
-                          <GoogleLogin
-                            clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                            render={(renderProps) => (
-                              <button
-                                onClick={renderProps.onClick}
-                                disabled={renderProps.disabled}
-                                className="w-full flex items-center justify-center mt-3 mb-5 text-brand-900 rounded-lg shadow-md outline-none hover:bg-deep-purple-50 hover:text-deep-purple-500 cursor-pointer transition-all duration-300 ease-in-out focus:outline-none"
-                              >
-                                <div className="px-4 py-3">
-                                  <img
-                                    src="https://img.icons8.com/fluent/28/000000/google-logo.png"
-                                    alt="google-logo"
-                                  />
-                                </div>
-                                {/* Google SignIn Button */}
-                                <span className="w-5/6 px-4 py-3 pr-20 font-semibold font-body text-base text-center">
-                                  গুগল দিয়ে সাইন ইন করুন
-                                </span>
-                              </button>
-                            )}
-                          ></GoogleLogin>
-                        </Slide>
-
-                        {/* SignIn with Facebook */}
-                        <Slide bottom>
-                          <FacebookLogin
-                            appId={`${process.env.REACT_APP_FACEBOOK_CLIENT}`}
-                            autoLoad={false}
-                            callback={responseFacebook}
-                            render={(renderProps) => (
-                              <button
-                                onClick={renderProps.onClick}
-                                className="w-full flex items-center justify-center mt-3 mb-5 text-brand-900 rounded-lg shadow-md outline-none hover:bg-deep-purple-50 hover:text-deep-purple-500 cursor-pointer transition-all duration-300 ease-in-out focus:outline-none"
-                              >
-                                <div className="px-4 py-3">
-                                  <img
-                                    src="https://img.icons8.com/fluent/29/000000/facebook-new.png"
-                                    alt="facebook-logo"
-                                  />
-                                </div>
-                                {/* Google SignIn Button */}
-                                <span className="w-5/6 px-4 py-3 pr-20 font-semibold font-body text-base text-center">
-                                  ফেসবুক দিয়ে সাইন ইন করুন
-                                </span>
-                              </button>
-                            )}
-                          />
-                        </Slide>
-
-                        {/* Common Login */}
-                        <form onSubmit={handleSubmit}>
-                          <Slide bottom>
-                            <div className="flex items-center justify-between mt-4">
-                              <span className="w-1/5 border-b lg:w-1/4" />
-                              <span className="text-xs text-center text-gray-600 font-medium font-body tracking-wider uppercase">
-                                অথবা ইমেইল দিয়ে লগ ইন করুন
-                              </span>
-                              <span className="w-1/5 border-b lg:w-1/4" />
-                            </div>
-
-                            {/* LogIn Form */}
-                            <div className="mt-4 font-body">
-                              <label
-                                className="block mb-2 text-base font-medium text-gray-700"
-                                htmlFor="LoggingEmailAddress"
-                              >
-                                ইমেইল
-                              </label>
-                              <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                                <span className="login-icon">
-                                  <FontAwesomeIcon
-                                    icon={faEnvelope}
-                                    className="text-gray-500"
-                                  />
-                                </span>
-                                <input
-                                  id="LoggingEmailAddress"
-                                  name="email"
-                                  type="email"
-                                  className="login-input"
-                                  placeholder="আপনার ইমেইল প্রদান করুন"
-                                  onChange={handleChange('email')}
-                                  value={email}
-                                />
-                              </div>
-                            </div>
-                            <div className="mt-4 font-body">
-                              <div className="flex justify-between">
-                                <label
-                                  className="block mb-2 text-base font-medium text-gray-700"
-                                  htmlFor="loggingPassword"
-                                >
-                                  পাসওয়ার্ড
-                                </label>
-                                <span
-                                  className="text-sm text-gray-700 cursor-pointer hover:text-deep-purple-accent-700 tracking-wide"
-                                  onClick={() => setForgetPassword(true)}
-                                >
-                                  পাসওয়ার্ড ভুলে গেছেন?
-                                </span>
-                              </div>
-                              <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                                <span className="login-icon">
-                                  <FontAwesomeIcon
-                                    icon={faLock}
-                                    className="text-gray-500"
-                                  />
-                                </span>
-                                <input
-                                  id="loggingPassword"
-                                  name="password"
-                                  type={typePass ? 'text' : 'password'}
-                                  className="login-input"
-                                  placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
-                                  onChange={handleChange('password1')}
-                                  value={password1}
-                                />
-                                <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-base leading-5 cursor-pointer">
-                                  <FontAwesomeIcon
-                                    icon={typePass ? faEyeSlash : faEye}
-                                    className="text-gray-500"
-                                    onClick={() => setTypePass(!typePass)}
-                                  />
-                                </span>
-                              </div>
-                            </div>
-                            <div className="mt-8">
-                              {/* Manual Login Button */}
-                              <button
-                                className="w-full px-4 py-2 font-semibold font-body text-base tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-deep-purple-accent-700 focus:outline-none focus:bg-deep-purple-900"
-                                type="submit"
-                              >
-                                {textChange}
-                              </button>
-                            </div>
-                          </Slide>
-                        </form>
-
-                        <Slide bottom>
-                          <div className="flex items-center justify-between mt-4">
-                            <span className="w-1/5 border-b  md:w-1/4" />
-                            <span
-                              className="text-base text-brand-900 font-semibold font-body uppercase cursor-pointer hover:text-deep-purple-accent-700"
-                              onClick={() => modalData.setNewUser(true)}
-                            >
-                              অথবা রেজিস্ট্রেশন করুন
+                    <form onSubmit={handleSubmit}>
+                      <Slide bottom>
+                        {/* 手机号输入框 */}
+                        <div className="mt-4 font-body">
+                          <label
+                            className="block mb-2 text-base font-medium text-gray-700"
+                            htmlFor="LoggingPhone"
+                          >
+                            手机号
+                          </label>
+                          <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                            <span className="login-icon">
+                              <FontAwesomeIcon
+                                icon={faMobileAlt}
+                                className="text-gray-500"
+                              />
                             </span>
-                            <span className="w-1/5 border-b md:w-1/4" />
+                            <input
+                              id="LoggingPhone"
+                              name="phone"
+                              type="tel"
+                              className="login-input"
+                              placeholder="请输入手机号"
+                              maxLength={11}
+                              onChange={handleChange('phone')}
+                              value={phone}
+                            />
                           </div>
-                        </Slide>
-                      </Fragment>
-                    ) : (
-                      // Forget Password Form
-                      <Fragment>
-                        <form onSubmit={handleForgetPasswordSubmit}>
-                          <Slide bottom>
-                            <div className="flex items-center justify-between mt-4">
-                              <span className="w-1/5 border-b lg:w-1/4" />
-                              <span className="mt-1 text-lg text-center text-gray-700 font-normal font-body tracking-wider uppercase">
-                                পাসওয়ার্ড ভুলে গেছেন?
-                              </span>
-                              <span className="w-1/5 border-b lg:w-1/4" />
-                            </div>
+                        </div>
 
-                            <div className="mt-3 font-body">
-                              <label
-                                className="block mb-2 text-base font-medium text-gray-700"
-                                htmlFor="ForgetEmailAddress"
-                              >
-                                ইমেইল
-                              </label>
-                              <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                                <span className="login-icon">
-                                  <FontAwesomeIcon
-                                    icon={faEnvelope}
-                                    className="text-gray-500"
-                                  />
-                                </span>
-                                <input
-                                  id="ForgetEmailAddress"
-                                  name="email"
-                                  type="email"
-                                  className="login-input"
-                                  placeholder="আপনার ইমেইল প্রদান করুন"
-                                  onChange={handleForgetChange('forgetEmail')}
-                                  value={forgetEmail}
+                        {/* 验证码输入框 + 获取验证码按钮 */}
+                        <div className="mt-4 font-body">
+                          <label
+                            className="block mb-2 text-base font-medium text-gray-700"
+                            htmlFor="loggingVerificationCode"
+                          >
+                            验证码
+                          </label>
+                          <div className="relative flex w-full items-stretch gap-2">
+                            <div className="flex-1 relative flex flex-wrap items-stretch">
+                              <span className="login-icon">
+                                <FontAwesomeIcon
+                                  icon={faShieldAlt}
+                                  className="text-gray-500"
                                 />
-                              </div>
+                              </span>
+                              <input
+                                id="loggingVerificationCode"
+                                name="verificationCode"
+                                type="text"
+                                className="login-input pr-2"
+                                placeholder="请输入验证码"
+                                onChange={handleChange('verificationCode')}
+                                value={verificationCode}
+                              />
                             </div>
-                            {/* Forget Password Send Button */}
-                            <div className="mt-8">
-                              <button className="w-full px-4 py-2 font-semibold font-body text-base tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-deep-purple-accent-700 focus:outline-none focus:bg-deep-purple-900">
-                                {forgetTextChange}
-                              </button>
-                            </div>
-                          </Slide>
-                        </form>
-
-                        <Slide bottom>
-                          <div className="flex items-center justify-between mt-4">
-                            <span className="w-1/5 border-b  md:w-1/4" />
-                            <span
-                              className="text-base text-brand-900 font-semibold font-body uppercase cursor-pointer hover:text-deep-purple-accent-700"
-                              onClick={() => setForgetPassword(false)}
+                            <button
+                              type="button"
+                              onClick={handleGetVerificationCode}
+                              disabled={countdown > 0}
+                              className="px-4 py-2.5 min-w-[110px] font-semibold font-body text-sm text-brand-900 bg-gray-100 border border-gray-200 rounded-lg hover:bg-deep-purple-50 hover:border-brand-900 hover:text-deep-purple-accent-700 focus:outline-none focus:ring-2 focus:ring-brand-900 focus:ring-offset-1 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200"
                             >
-                              অথবা লগ ইন করুন
-                            </span>
-                            <span className="w-1/5 border-b md:w-1/4" />
+                              {countdown > 0 ? `${countdown}s 后重发` : '获取验证码'}
+                            </button>
                           </div>
-                        </Slide>
-                      </Fragment>
-                    )}
+                        </div>
+
+                        <div className="mt-8">
+                          <button
+                            className="w-full px-4 py-2 font-semibold font-body text-base tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-deep-purple-accent-700 focus:outline-none focus:bg-deep-purple-900"
+                            type="submit"
+                          >
+                            {textChange}
+                          </button>
+                        </div>
+                      </Slide>
+                    </form>
+
+                    <Slide bottom>
+                      <div className="flex items-center justify-between mt-4">
+                        <span className="w-1/5 border-b md:w-1/4" />
+                        <span
+                          className="text-base text-brand-900 font-semibold font-body uppercase cursor-pointer hover:text-deep-purple-accent-700"
+                          onClick={() => modalData.setNewUser(true)}
+                        >
+                          或立即注册
+                        </span>
+                        <span className="w-1/5 border-b md:w-1/4" />
+                      </div>
+                    </Slide>
                   </Fragment>
                 ) : (
                   // Registration Form
@@ -584,17 +313,17 @@ const LoginModal = () => {
                       <div>
                         {/* Registration Header*/}
                         <h2 className="text-2xl ml-4 mb-2 font-display text-center font-bold text-brand-900">
-                          অনুশীলন
+                          AI虚拟科学实验室
                         </h2>
                         <p className="text-lg font-body text-center text-gray-600 ">
-                          নতুন ব্যবহারকারী হিসাবে নিবন্ধন করুন
+                          新用户注册
                         </p>
                       </div>
 
                       <div className="mt-3 mb-0 font-body flex flex-wrap justify-center items-center">
                         <label className="inline-flex items-center">
                           <span className="text-lg text-brand-900 font-body mr-3 font-medium">
-                            নিবন্ধন করুন আপনার শিক্ষাপ্রতিষ্ঠানের মাধ্যমে
+                            通过学校/机构注册
                           </span>
                         </label>
                       </div>
@@ -604,7 +333,7 @@ const LoginModal = () => {
                           className="block mb-2 text-base font-medium text-gray-700"
                           htmlFor="SearchInstitutionName"
                         >
-                          আপনার শিক্ষা প্রতিষ্ঠানের নাম
+                          学校/机构名称
                         </label>
                         <div className="relative flex w-full flex-wrap items-stretch mb-3">
                           <span className="login-icon">
@@ -619,7 +348,7 @@ const LoginModal = () => {
                             className="login-input"
                             onChange={institutionFilterChange}
                             onFocus={handleSearchBox}
-                            placeholder="আপনার শিক্ষা প্রতিষ্ঠানের নাম প্রদান করুন"
+                            placeholder="输入学校/机构名称"
                           />
                         </div>
                       </div>
@@ -627,7 +356,7 @@ const LoginModal = () => {
                     {/* Show Search Box */}
                     {showSearchBox ? (
                       <div className="inline-flex flex-col justify-center relative text-gray-600 font-body w-full">
-                        <h3 className="mt-2 text-sm">সার্চ রেজাল্ট:</h3>
+                        <h3 className="mt-2 text-sm">搜索结果：</h3>
                         <ul className="bg-white border border-gray-100  overflow-y-scroll h-48 mt-2 ">
                           {/* If not found any Institution */}
                           {institutionList.length === 0 && (
@@ -646,8 +375,7 @@ const LoginModal = () => {
                                   d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"
                                 />
                               </svg>
-                              আপনার শিক্ষা প্রতিষ্ঠানের নাম খুঁজে পাওয়া যাচ্ছে
-                              না!
+                              未找到匹配的学校/机构！
                             </li>
                           )}
 
@@ -702,10 +430,8 @@ const LoginModal = () => {
                                   d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
                                 />
                               </svg>
-                              আপনার শিক্ষা প্রতিষ্ঠানের নাম সার্চ করে নিবন্ধন
-                              করুন, এতে আপনার শিক্ষাপ্রতিষ্ঠান আপনার সকল
-                              পারফরমেন্স দেখতে পারবে এবং আপনি আপনার প্রতিষ্ঠান
-                              থেকে সকল সুযোগ সুবিধা ভোগ করতে পারবেন।
+                              搜索并选择学校/机构注册，学校可查看你的学习数据，
+                              你也可享受机构提供的各项权益。
                             </p>
                           </div>
                           <div>
@@ -724,8 +450,7 @@ const LoginModal = () => {
                                   d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                                 />
                               </svg>
-                              এছাড়াও আপনি চাইলে শিক্ষা প্রতিষ্ঠান ছাড়া স্বতন্ত্র
-                              ভাবে নিবন্ধন করে সকল সুযোগ সুবিধা ভোগ করতে পারবেন।
+                              你也可以选择独立注册，享受全部功能。
                             </p>
                           </div>
                         </Slide>
@@ -737,7 +462,7 @@ const LoginModal = () => {
                       <div className="flex items-center justify-between mt-6">
                         <span className="w-1/6 border-b " />
                         <span className="text-base lg:textlg text-gray-700 font-body mx-3 font-medium">
-                          অথবা নিবন্ধন করুন স্বতন্ত্র ভাবে
+                          或独立注册
                         </span>
                         <span className="w-1/6 border-b " />
                       </div>
@@ -747,7 +472,7 @@ const LoginModal = () => {
                           className="w-full px-4 py-2 font-semibold font-body text-base tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-deep-purple-accent-700 focus:outline-none focus:bg-deep-purple-900"
                           onClick={handleRegistrationModal}
                         >
-                          স্বতন্ত্র ভাবে নিবন্ধন করুন
+                          独立注册
                         </button>
                       </div>
                     </Slide>

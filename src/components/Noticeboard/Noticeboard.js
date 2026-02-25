@@ -1,7 +1,7 @@
 import { IconButton } from '@material-ui/core';
 import { SendOutlined } from '@material-ui/icons';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
@@ -50,11 +50,11 @@ const Noticeboard = () => {
 
   const createPost = async () => {
     if (noticeContent === undefined || noticeContent === '') {
-      toast.error('অনুগ্রহ করে নোটিশ লিখুন');
+      toast.error('请输入公告内容');
     } else {
       const post = {
         notice: noticeContent,
-        date: moment().locale('bn-bd').format('LLL'),
+        date: moment().locale('zh-cn').format('LLL'),
         userEmail: auth.user.email,
         userName: auth.user.name,
         userImage: auth.user.avatar,
@@ -70,7 +70,7 @@ const Noticeboard = () => {
         <>
           <div className="class__announce_box">
             <p className="text-base font-body mb-3 font-semibold tracking-wider text-brand-900">
-              নোটিশ বোর্ডে আপনার নোটিশ পোস্ট করুন
+              在公告板发布你的公告
             </p>
 
             <div className="class__announce">
@@ -79,7 +79,7 @@ const Noticeboard = () => {
                 type="text"
                 value={noticeContent}
                 onChange={(e) => setNoticeContent(e.target.value)}
-                placeholder="নোটিশ লিখুন..."
+                placeholder="输入公告内容..."
               />
               <IconButton onClick={createPost}>
                 <SendOutlined />

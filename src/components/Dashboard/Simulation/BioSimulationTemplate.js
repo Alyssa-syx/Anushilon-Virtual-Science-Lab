@@ -18,7 +18,7 @@ import VideoTemplate from './VideoTemplate';
 const BioSimulationTemplate = () => {
   const [openTab, setOpenTab] = React.useState(1);
   document.title =
-    'সালোকসংশ্লেষণ প্রক্রিয়ায় ক্লোরোফিল ও আলোর অপরিহার্যতার পরীক্ষণ।';
+    '光合作用中叶绿素与光的必要性实验';
 
   // YouTube video ID
   const videoSimulationId = {
@@ -39,7 +39,7 @@ const BioSimulationTemplate = () => {
                   to="/simulation-bio"
                   className="font-medium text-brand-900"
                 >
-                  সিমুলেশন
+                  模拟
                 </NavLink>
               </li>
               <li>
@@ -51,7 +51,7 @@ const BioSimulationTemplate = () => {
                   to="/simulation-bio"
                   className="font-medium text-brand-900"
                 >
-                  জীববিজ্ঞান
+                  生物
                 </NavLink>
               </li>
               <li>
@@ -59,8 +59,7 @@ const BioSimulationTemplate = () => {
               </li>
               <li>
                 <span className="text-base">
-                  সালোকসংশ্লেষণ প্রক্রিয়ায় ক্লোরোফিল ও আলোর অপরিহার্যতার
-                  পরীক্ষণ।
+                  光合作用中叶绿素与光的必要性实验
                 </span>
               </li>
             </ol>
@@ -82,7 +81,7 @@ const BioSimulationTemplate = () => {
                 href="#link1"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faBook} className="mr-1" /> তত্ত্ব
+                <FontAwesomeIcon icon={faBook} className="mr-1" /> 理论
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -101,7 +100,7 @@ const BioSimulationTemplate = () => {
                 href="#link2"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faTasks} className="mr-1" /> কার্যপ্রণালী
+                <FontAwesomeIcon icon={faTasks} className="mr-1" /> 步骤
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -120,7 +119,7 @@ const BioSimulationTemplate = () => {
                 href="#link3"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faVideo} className="mr-1" /> ভিডিও
+                <FontAwesomeIcon icon={faVideo} className="mr-1" /> 视频
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -136,7 +135,7 @@ const BioSimulationTemplate = () => {
                 role="tablist"
               >
                 <FontAwesomeIcon icon={faPlayCircle} className="mr-1" />{' '}
-                অ্যানিমেশন
+                动画
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -155,7 +154,7 @@ const BioSimulationTemplate = () => {
                 href="#link5"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faDiceD6} className="mr-1" /> সিমুলেটর
+                <FontAwesomeIcon icon={faDiceD6} className="mr-1" /> 模拟器
               </a>
             </li>
             <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
@@ -174,7 +173,7 @@ const BioSimulationTemplate = () => {
                 href="#link6"
                 role="tablist"
               >
-                <FontAwesomeIcon icon={faFlask} className="mr-1" /> পর্যবেক্ষণ
+                <FontAwesomeIcon icon={faFlask} className="mr-1" /> 观察
               </a>
             </li>
           </ul>

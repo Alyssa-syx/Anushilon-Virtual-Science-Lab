@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import firebase from 'firebase';
 import moment from 'moment';
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { db } from '../../configs/firebase';
@@ -41,7 +41,7 @@ function CommentField({ postID }) {
           text: comment,
           username: auth.user.name,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          date: moment().locale('bn-bd').format('LT'),
+          date: moment().locale('zh-cn').format('LT'),
         });
     setComment('');
   }
@@ -50,7 +50,7 @@ function CommentField({ postID }) {
     <form className={classes.comment__box}>
       <TextField
         value={comment}
-        placeholder="মন্তব্য লিখুন..."
+        placeholder="写下你的评论..."
         onChange={(e) => setComment(e.target.value)}
         className={classes.comment__input}
         id="standard-basic"
@@ -63,7 +63,7 @@ function CommentField({ postID }) {
         variant="outlined"
       >
         <span className="font-body text-base text-brand-900 font-medium tracking-wide">
-          মন্তব্য করুন
+          发布评论
         </span>
       </Button>
     </form>

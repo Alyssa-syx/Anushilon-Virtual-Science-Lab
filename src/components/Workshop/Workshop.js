@@ -1,4 +1,4 @@
-import 'moment/locale/bn-bd';
+import 'moment/locale/zh-cn';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { db } from '../../configs/firebase';

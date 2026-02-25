@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { animated, config, useTransition } from "react-spring";
 
-const WordsFading = () => {
+const WordsFading = ({ variant = "light" }) => {
   const [toggle, set] = useState(false);
+  const textClass =
+    variant === "pill"
+      ? "text-amber-900 font-semibold text-sm sm:text-base"
+      : "text-white font-medium text-sm sm:text-base";
   // Transition Style
   const transitions = useTransition(toggle, {
     from: {
@@ -22,31 +26,34 @@ const WordsFading = () => {
   });
 
   return transitions(
-    // Transition Contents
     ({ opacity }, item) =>
       item ? (
         <animated.div
+          className={textClass}
           style={{
             position: "absolute",
             top: 0,
             left: 0,
+            right: 0,
             margin: 0,
             opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
           }}
         >
-          সর্ব বৃহৎ
+          趣味教学
         </animated.div>
       ) : (
         <animated.div
+          className={textClass}
           style={{
             position: "absolute",
             top: 0,
             left: 0,
+            right: 0,
             margin: 0,
             opacity: opacity.to({ range: [1.0, 0.0], output: [1, 0] }),
           }}
         >
-          সর্ব প্রথম
+          AI伴学
         </animated.div>
       )
   );

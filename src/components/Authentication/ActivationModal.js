@@ -49,7 +49,7 @@ const ActivationModal = () => {
   // submit activation token
   const handleSubmit = (e) => {
     e.preventDefault();
-    const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
+    const loading = toast.loading('请稍候...⏳');
     axios
       .post(`${process.env.REACT_APP_API_URL}/activation`, {
         token,
@@ -82,7 +82,7 @@ const ActivationModal = () => {
           duration: 5000,
           style: {
             minWidth: `${notificationWidth}`,
-            fontFamily: 'Hind Siliguri',
+            fontFamily: '"Microsoft YaHei", "PingFang SC", sans-serif',
           },
         }}
       />
@@ -134,7 +134,7 @@ const ActivationModal = () => {
                 </div>
                 <div className="mt-8 flex flex-col items-center">
                   <h1 className="text-lg sm:text-xl lg:text-2xl mx-4 font-body text-gray-900 font-semibold">
-                    স্বাগতম 💐 {name}
+                    欢迎 💐 {name}
                   </h1>
 
                   <form
@@ -143,7 +143,7 @@ const ActivationModal = () => {
                   >
                     <div className="border-b text-center">
                       <div className="leading-none px-2 inline-block text-sm lg:text-base font-body text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                        অনুগ্রহ করে আপনার একাউন্ট একটিভ করুন
+                        请激活你的账号
                       </div>
                     </div>
                     <div className="mx-auto w-48 sm:w-60 lg:w-72 relative">
@@ -152,7 +152,7 @@ const ActivationModal = () => {
                         className="mt-8 mb-6 text-sm md:text-base tracking-wide font-body font-semibold bg-indigo-500 text-gray-100 w-full px-6 py-3 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       >
                         <FontAwesomeIcon icon={faUser} className="w-6 -ml-2" />
-                        <span className="ml-3">অ্যাকাউন্ট সচল করুন</span>
+                        <span className="ml-3">激活账号</span>
                       </button>
                     </div>
                   </form>

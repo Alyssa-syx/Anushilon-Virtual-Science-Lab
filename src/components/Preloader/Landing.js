@@ -11,7 +11,7 @@ const Landing = () => {
       <div className="min-h-screen" style={{ backgroundColor: '#635BD3' }}>
         <div>
           <h2 className="text-center pt-10 pb-10 lg:pb-20 font-display text-3xl font-bold leading-10 lg:leading-normal tracking-wide text-white lg:text-5xl mx-auto hidden">
-            অনুশীলন - ভার্চুয়াল সাইন্স ল্যাব
+            AI虚拟科学实验室
           </h2>
           {/* Pre Loader Animation */}
           <img

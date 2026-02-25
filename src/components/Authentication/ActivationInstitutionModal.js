@@ -70,22 +70,15 @@ const ActivationInstitutionModal = () => {
                 </div>
                 <div className="mt-8 flex flex-col items-center">
                   <p className="text-base lg:text-lg font-body text-gray-800 font-normal px-8 -mb-2 leading-normal tracking-wide">
-                    আপনার অ্যাকাউন্টটি সচল করার জন্য{' '}
-                    <span className="line-through">
-                      {' '}
-                      আপনার তথ্য গুলি আপনার শিক্ষাপ্রতিষ্ঠানের কাছে পাঠানো
-                      হয়েছে। আপনাকে ফোন করে যাচাই হওয়ার পর আপনার একাউন্টটি একটিভ
-                      করার জন্য{' '}
-                    </span>{' '}
-                    আপনাকে ইমেইল পাঠানো হবে। অনুগ্রহ করে আপনার ইমেইল চেক করুন।
-                    অথবা আপনি এই মুহূর্তে শিক্ষা প্রতিষ্ঠান ছাড়া স্বতন্ত্র ভাবে
-                    নিবন্ধন করে সকল সুযোগ সুবিধা ভোগ করতে পারবেন।
+                    为激活账号，你的信息已发送至学校/机构。
+                    经电话核实后，我们将向你发送激活邮件，请查收邮箱。
+                    你也可以选择独立注册，立即享受全部功能。
                   </p>
 
                   <div className="w-full flex-1 my-3 text-indigo-500">
                     <div className="border-b text-center">
                       <div className="leading-none px-2 inline-block text-base lg:text-lg font-body text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                        অথবা নিবন্ধন করুন স্বতন্ত্র ভাবে
+                        或独立注册
                       </div>
                     </div>
                     <div className="mx-auto w-60 lg:w-80 relative">
@@ -93,7 +86,7 @@ const ActivationInstitutionModal = () => {
                         className="w-full px-4 py-2 mt-6 mb-4 font-semibold font-body text-base lg:text-lg tracking-wide text-gray-50 focus-within:transition-colors duration-200 bg-brand-900 rounded hover:bg-deep-purple-accent-700 focus:outline-none focus:bg-deep-purple-900"
                         onClick={handleRegistrationModal}
                       >
-                        স্বতন্ত্র ভাবে নিবন্ধন করুন
+                        独立注册
                       </button>
                     </div>
                   </div>

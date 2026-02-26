@@ -1,14 +1,13 @@
 import firebase from 'firebase';
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: 'dummy-api-key-to-bypass-crash',
-  authDomain: 'dummy-domain.firebaseapp.com',
-  databaseURL: 'https://dummy-database.firebaseio.com',
-  projectId: 'dummy-project-id',
-  storageBucket: 'dummy-bucket.appspot.com',
-  messagingSenderId: '123456789012',
-  appId: '1:123456789012:web:abcdef1234567890',
-  measurementId: 'G-DUMMYID123',
+  apiKey: 'AIzaSyBZlmWdAEbGrxkg57Xvrg05e73w-EkDBIg',
+  authDomain: 'ai-science-lab.firebaseapp.com',
+  projectId: 'ai-science-lab',
+  storageBucket: 'ai-science-lab.firebasestorage.app',
+  messagingSenderId: '553220877680',
+  appId: '1:553220877680:web:c8b8b744617e56bdf1b3b5',
+  measurementId: 'G-KFFP7LY6YV',
 });
 
 const db = firebaseApp.firestore();
